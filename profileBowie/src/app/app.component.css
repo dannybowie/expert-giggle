@@ -1,20 +1,35 @@
+.hero-container {
+  position: relative;         /* Make it stick to the viewport */
+  width: 100vw;            /* Full viewport width */
+  height: 100vh;           /* Full viewport height */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  z-index: -1;              /* Ensure it's behind other content if needed */
+}
+
 .hero-image {
   width: 100vw;
+  top: 0;
+  left: 0;
   height: auto;
   display: block;
-  max-width: 100%;
+  width: 100vw;
   object-fit: cover;
-  z-index: -1;
+  z-index: -2;
   position: absolute;
 }
 
 .hero-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 65%;
+  left: 25%;
+  width: 38%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: black;
   text-align: center;
+  background-color: rgba(241, 249, 233, 0.8); /* 90% opaque khaki-grey */
+  box-shadow: 0 8px 32px 0 rgba(60, 60, 60, 0.25), 0 1.5px 6px 0 rgba(0,0,0,0.15);
 }
 .hero-text h1 {
   font-size: 3rem;
@@ -25,7 +40,7 @@
   margin: 0.5rem 0;
 }
 .hero-text a {
-  color: white;
+  color: black;
   text-decoration: none;
   font-weight: bold;
   background-color: rgba(0, 0, 0, 0.5);
@@ -36,3 +51,23 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+.content {
+  position: relative;      /* Ensure content is above the hero image */
+  z-index: 1;              /* Higher z-index than the hero image */
+  padding: 20px;
+  color: #333;
+}
+
+.hero-book {
+  position: absolute;
+  top: 25%;
+  left: 18%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.hero-book-image {
+  width: 225px; /* Adjust size as needed */
+  height: auto;
+  border-radius: 8px;
+}
