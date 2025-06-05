@@ -1,73 +1,100 @@
-.hero-container {
-  position: relative;         /* Make it stick to the viewport */
-  width: 100vw;            /* Full viewport width */
-  height: 100vh;           /* Full viewport height */
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  z-index: -1;              /* Ensure it's behind other content if needed */
-}
+    @import url('https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Helvetica+Neue:wght@300;400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap');
+    
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #FAF9F8;
+      color: #1A1A1A;
+    }
 
-.hero-image {
-  width: 100vw;
-  top: 0;
-  left: 0;
-  height: auto;
-  display: block;
-  width: 100vw;
-  object-fit: cover;
-  z-index: -2;
-  position: absolute;
-}
+    header {
+      background-image: url('/hero-img.jpg');
+      background-size: fill;
+      background-position: center;
+      padding: 100px 40px;
+      color: white;
+      text-align: left;
+      background-color: #2F4F2F;
+    }
 
-.hero-text {
-  position: absolute;
-  top: 65%;
-  left: 25%;
-  width: 38%;
-  transform: translate(-50%, -50%);
-  color: black;
-  text-align: center;
-  background-color: rgba(241, 249, 233, 0.8); /* 90% opaque khaki-grey */
-  box-shadow: 0 8px 32px 0 rgba(60, 60, 60, 0.25), 0 1.5px 6px 0 rgba(0,0,0,0.15);
-}
-.hero-text h1 {
-  font-size: 3rem;
-  margin: 0;
-}   
-.hero-text p {
-  font-size: 1.5rem;
-  margin: 0.5rem 0;
-}
-.hero-text a {
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-.hero-text a:hover {
-  background-color: rgba(0, 0, 0, 0.7);
-}
+    header h1 {
+      font-family: 'Georgia', serif;
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
 
-.content {
-  position: relative;      /* Ensure content is above the hero image */
-  z-index: 1;              /* Higher z-index than the hero image */
-  padding: 20px;
-  color: #333;
-}
+    header p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
 
-.hero-book {
-  position: absolute;
-  top: 25%;
-  left: 18%;
-  transform: translateY(-50%);
-  z-index: 1;
-}
+    .btn-red, .btn-dark {
+      padding: 12px 24px;
+      border: none;
+      margin-right: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-.hero-book-image {
-  width: 225px; /* Adjust size as needed */
-  height: auto;
-  border-radius: 8px;
-}
+    .btn-red {
+      background-color: #C73228;
+      color: white;
+    }
+
+    .btn-dark {
+      background-color: #2B2B2B;
+      color: white;
+    }
+
+    .section {
+      display: flex;
+      padding: 60px 40px;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .section:nth-child(even) {
+      background-color: #F0F0F0;
+    }
+
+    .book-cover {
+      width: 250px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .section h2 {
+      font-family: 'Georgia', serif;
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .features ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .features ul li {
+      margin: 8px 0;
+      color: #228B22;
+    }
+
+    .quote {
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      color: #C73228;
+      margin-top: 20px;
+    }
+
+    footer {
+      background-color: #2B2B2B;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+  
