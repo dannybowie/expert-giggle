@@ -1,0 +1,134 @@
+/* Header / Hero Section */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: url('/IMG_042621.png') no-repeat center center;
+  background-size: cover;
+  padding: 80px 60px;
+  color: white;
+  height: 400px;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.btn-red,
+.btn-dark {
+  padding: 12px 24px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-right: 15px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.btn-red {
+  background-color: #B62D27;
+  color: white;
+}
+
+.btn-red:hover {
+  background-color: #a02020;
+}
+
+.btn-dark {
+  background-color: #222;
+  color: white;
+}
+
+.btn-dark:hover {
+  background-color: #111;
+}
+
+/* Main content layout */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 60px;
+  gap: 60px;
+}
+
+.left-column {
+  flex: 2;
+}
+
+.author-bio {
+  flex: 1;
+  background-color: #f8f6f3;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.author-bio img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.author-bio h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+/* Book section */
+.section {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 60px;
+}
+
+.book-cover {
+  width: 160px;
+  margin-right: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.section-content h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.section-content p {
+  margin-bottom: 15px;
+}
+
+.section-content ul {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+.section-content li::before {
+  content: "✔";
+  color: #3b7d3b;
+  margin-right: 10px;
+}
+
+/* Invite section */
+.invite-section {
+  background-color: #B62D27;
+  color: white;
+  padding: 40px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.invite-section h2 {
+  margin-bottom: 10px;
+}
+
+.invite-section p {
+  margin-bottom: 20px;
+}
