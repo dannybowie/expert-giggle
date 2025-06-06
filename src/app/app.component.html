@@ -1,53 +1,16 @@
 <body>
 
   <nav>
-    <a href="#">HOME</a>
-    <a href="#">ABOUT</a>
-    <a href="#">BOOK</a>
-    <a href="#">SPEAKING</a>
+    <a routerLink="/">HOME</a>
+    <a routerLink="/about">ABOUT</a>
+    <a routerLink="/book">BOOK</a>
+    <a routerLink="/speaking">SPEAKING</a>
   </nav>
 
-  <header>
-    <div class="hero-content">
-      <h1>Transform Your Life, One Page at a Time</h1>
-      <p>A powerful new voice in self-help. Discover your strength.</p>
-      <button class="btn-red">BUY THE BOOK</button>
-      <button class="btn-dark">BOOK THE AUTHOR TO SPEAK</button>
-    </div>
-  </header>
-
-  <div class="main-content">
-  <div class="left-column">
-    <section class="section">
-      <img src="book.png" alt="Book Cover" class="book-cover"/>
-      <div class="section-content">
-        <h2>About the Book</h2>
-        <p>A brief description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-        <ul>
-          <li>Empowering personal growth</li>
-          <li>Practical tools and reflection</li>
-          <li>Written from real-life experience</li>
-        </ul>
-        <button class="btn-red">BUY NOW</button>
-      </div>
-    </section>
-    <section class="invite-section">
-      <h2>Invite the Author to Speak</h2>
-      <p>Empowering talks on motivation, personal growth, and overcoming life's challenges.</p>
-      <button class="btn-dark">BOOK NOW</button>
-    </section>
-  </div>
-  <div class="author-bio">
-    <img src="/IMG_042621.png" alt="Author Photo"/>
-    <div>
-      <h3>About BeBe Bowie</h3>
-      <p>Auctoncomal um et elit eat. Proin in nial we nial motesite softfillz.</p>
-    </div>
-  </div>
-</div>
+  <router-outlet></router-outlet>
     
   <footer>
-    <p>© 2025 Author Name. All rights reserved.</p>
+    <p>© 2025 BeBe Bowie. All rights reserved.</p>
   </footer>
 
 </body>
