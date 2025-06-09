@@ -1,5 +1,5 @@
 /* Header / Hero Section */
-header {
+.hero {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -131,4 +131,4 @@ header {
 
 .invite-section p {
   margin-bottom: 20px;
-}
+}  

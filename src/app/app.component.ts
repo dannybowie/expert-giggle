@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink], // Add RouterLink here
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'] // <-- fix here
+  styleUrls: ['./app.component.css']   // <-- Fix typo here
 })
 export class AppComponent {
-  title = 'profileBowie';
+  title = 'Front-End';
+  message = 'A message to you';
 
-  onTestClick() {
-    console.log('Nav link clicked!');
+  constructor() {
+    console.log('AppComponent initialized');
   }
+
+
 }
