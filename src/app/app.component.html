@@ -1,14 +1,28 @@
 <header>
-  <nav>
-    <a routerLink="/">HOME</a>
-    <a routerLink="/about">ABOUT</a>
-    <a routerLink="/book">BOOK</a>
-    <a routerLink="/speaking">SPEAKING</a>
+  <nav class="main-nav">
+    <div class="nav-left">
+      <a routerLink="/">HOME</a>
+      <a routerLink="/about">ABOUT</a>
+      <a routerLink="/book">BOOK</a>
+      <a routerLink="/speaking">SPEAKING</a>
+    </div>
+    <div class="nav-right">
+      <ng-container *ngIf="!isLoggedIn; else userIcon">
+        <button (click)="openLoginModal()">Log In</button>
+        <button (click)="openRegisterModal()">Register</button>
+      </ng-container>
+      <ng-template #userIcon>
+        <span class="user-icon" title="Account"></span>
+      </ng-template>
+    </div>
   </nav>
 </header>
 
-  <router-outlet></router-outlet>
+<app-login *ngIf="showLoginModal" (close)="closeLoginModal()"></app-login>
+<app-register *ngIf="showRegisterModal" (close)="closeRegisterModal()"></app-register>
+
+<router-outlet></router-outlet>
 
 <footer>
-    <p>© 2025 BeBe Bowie. All rights reserved.</p>
-  </footer>
+  <p>© 2025 BeBe Bowie. All rights reserved.</p>
+</footer>

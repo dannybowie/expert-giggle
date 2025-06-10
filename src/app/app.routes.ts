@@ -6,7 +6,7 @@ import { BookComponent } from './book/book.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SpeakingComponent } from './speaking/speaking.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component'; // Assuming you have a RegisterComponent
+import { RegisterComponent } from './register/register.component'; 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'about', component: AboutComponent },
