@@ -28,10 +28,25 @@ export class AppComponent {
     console.log('AppComponent initialized');
   }
 
-  openLoginModal() { this.showLoginModal = true; }
-  closeLoginModal() { this.showLoginModal = false; }
-
-  openRegisterModal() { this.showRegisterModal = true; }
-  closeRegisterModal() { this.showRegisterModal = false; }
+  openLoginModal() {
+    this.showLoginModal = true;
+    this.showRegisterModal = false;
+  }
+  closeLoginModal() {
+    this.showLoginModal = false;
+  }
+  openRegisterModal() {
+    this.showRegisterModal = true;
+    this.showLoginModal = false;
+  }
+  closeRegisterModal() {
+    this.showRegisterModal = false;
+  }
+  switchToRegisterModal() {
+    this.openRegisterModal();
+  }
+  switchToLoginModal() {
+    this.openLoginModal();
+  }
 }
 

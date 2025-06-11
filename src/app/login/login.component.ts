@@ -12,6 +12,7 @@ import { Auth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider }
 })
 export class LoginComponent {
   @Output() closed = new EventEmitter<void>();
+  @Output() switchToRegister = new EventEmitter<void>();
 
   email = '';
   password = '';

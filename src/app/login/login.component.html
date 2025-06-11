@@ -16,4 +16,8 @@
   <button (click)="loginWithGoogle()" class="google-btn">Sign in with Google</button>
   <button class="close-btn" (click)="close()">Close</button>
   <div *ngIf="error" class="error">{{ error }}</div>
+  <p>
+    Don't have an account?
+    <a href="#" (click)="switchToRegister.emit(); $event.preventDefault()">Register</a>
+  </p>
 </div>
