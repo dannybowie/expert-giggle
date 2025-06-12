@@ -11,7 +11,7 @@ import { Auth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider }
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  @Output() closed = new EventEmitter<void>();
+  @Output() close = new EventEmitter<void>();
   @Output() switchToRegister = new EventEmitter<void>();
 
   email = '';
@@ -24,7 +24,7 @@ export class LoginComponent {
     this.error = '';
     try {
       await signInWithEmailAndPassword(this.auth, this.email, this.password);
-      this.closed.emit();
+      this.close.emit();
     } catch (err: any) {
       this.error = err.message;
     }
@@ -34,13 +34,13 @@ export class LoginComponent {
     this.error = '';
     try {
       await signInWithPopup(this.auth, new GoogleAuthProvider());
-      this.closed.emit(); // <-- fixed here
+      this.close.emit();
     } catch (err: any) {
       this.error = err.message;
     }
   }
 
-  close() {
-    this.closed.emit();
+  onClose() {
+    this.close.emit();
   }
 }

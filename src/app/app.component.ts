@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router'; // <-- Add RouterLinkActive
 import { NgIf } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     RouterOutlet,
     RouterLink,
+    RouterLinkActive, // <-- Add this line
     NgIf,
     LoginComponent,
     RegisterComponent
@@ -21,32 +22,27 @@ export class AppComponent {
   message = 'A message to you';
 
   isLoggedIn = false; // Replace with your auth logic
-  showLoginModal = false;
-  showRegisterModal = false;
+  showAuthModal = false;
+  isLoginMode = true; // true = login, false = register
 
   constructor() {
     console.log('AppComponent initialized');
   }
 
-  openLoginModal() {
-    this.showLoginModal = true;
-    this.showRegisterModal = false;
+  openAuthModal(mode: 'login' | 'register' = 'login') {
+    this.showAuthModal = true;
+    this.isLoginMode = (mode === 'login');
+    console.log('openAuthModal called, isLoginMode:', this.isLoginMode);
   }
-  closeLoginModal() {
-    this.showLoginModal = false;
+
+  closeAuthModal() {
+    console.log('closeAuthModal called');
+    this.showAuthModal = false;
   }
-  openRegisterModal() {
-    this.showRegisterModal = true;
-    this.showLoginModal = false;
-  }
-  closeRegisterModal() {
-    this.showRegisterModal = false;
-  }
-  switchToRegisterModal() {
-    this.openRegisterModal();
-  }
-  switchToLoginModal() {
-    this.openLoginModal();
+
+  switchAuthMode() {
+    this.isLoginMode = !this.isLoginMode;
+    console.log('switchAuthMode called, isLoginMode:', this.isLoginMode);
   }
 }
 

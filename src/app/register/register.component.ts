@@ -11,20 +11,25 @@ import { Auth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvid
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  @Output() closed = new EventEmitter<void>();
+  @Output() close = new EventEmitter<void>();
   @Output() switchToLogin = new EventEmitter<void>();
 
   email = '';
   password = '';
+  confirmPassword = ''; 
   error = '';
 
   constructor(private auth: Auth) {}
 
   async registerWithEmail() {
     this.error = '';
+    if (this.password !== this.confirmPassword) {
+      this.error = 'Passwords do not match.';
+      return;
+    }
     try {
       await createUserWithEmailAndPassword(this.auth, this.email, this.password);
-      this.closed.emit();
+      this.close.emit();
     } catch (err: any) {
       this.error = err.message;
     }
@@ -34,13 +39,14 @@ export class RegisterComponent {
     this.error = '';
     try {
       await signInWithPopup(this.auth, new GoogleAuthProvider());
-      this.closed.emit();
+      this.close.emit();
     } catch (err: any) {
       this.error = err.message;
     }
   }
 
-  close() {
-    this.closed.emit();
+  // This is the correct close method
+  onClose() {
+    this.close.emit();
   }
 }

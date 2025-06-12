@@ -51,3 +51,9 @@ footer {
   border-radius: 50%;
   display: inline-block;
 }
+
+/* Underline for active nav link */
+.active-link {
+  border-bottom: 2px solid #d7263d; /* or your preferred color */
+  padding-bottom: 2px;
+}

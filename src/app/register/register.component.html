@@ -1,4 +1,4 @@
-<div class="modal-backdrop" (click)="close()"></div>
+<div class="modal-backdrop" (click)="onClose()"></div>
 <div class="modal">
   <h2>Register</h2>
   <form (ngSubmit)="registerWithEmail()" #registerForm="ngForm">
@@ -10,11 +10,15 @@
       Password:
       <input type="password" [(ngModel)]="password" name="password" required />
     </label>
-    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+    <label>
+      Confirm Password:
+      <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
+    </label>
+    <button type="submit" [disabled]="registerForm.invalid">Sign Up</button>
   </form>
   <div class="divider">or</div>
   <button (click)="registerWithGoogle()" class="google-btn">Sign up with Google</button>
-  <button class="close-btn" (click)="close()">Close</button>
+  <button class="close-btn" (click)="onClose()">Close</button>
   <p>
     Already have an account?
     <a href="#" (click)="switchToLogin.emit(); $event.preventDefault()">Log In</a>

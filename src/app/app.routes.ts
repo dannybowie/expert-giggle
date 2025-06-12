@@ -5,8 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { BookComponent } from './book/book.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SpeakingComponent } from './speaking/speaking.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component'; 
+
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'about', component: AboutComponent },
@@ -14,9 +13,7 @@ export const routes: Routes = [
   { path: 'book', component: BookComponent }, 
   { path: 'not-found', component: NotFoundComponent }, 
   { path: 'speaking', component: SpeakingComponent }, 
-  { path: '**', redirectTo: 'home' }, 
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent } // Assuming you want to use the same component for registration
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
