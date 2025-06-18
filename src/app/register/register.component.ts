@@ -1,7 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Auth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, UserCredential } from '@angular/fire/auth';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class RegisterComponent {
   confirmPassword = ''; 
   error = '';
 
-  constructor(private auth: Auth) {}
+  constructor(private auth: Auth, private firestore: Firestore) {}
 
   async registerWithEmail() {
     this.error = '';
@@ -28,7 +29,13 @@ export class RegisterComponent {
       return;
     }
     try {
-      await createUserWithEmailAndPassword(this.auth, this.email, this.password);
+      const cred: UserCredential = await createUserWithEmailAndPassword(this.auth, this.email, this.password);
+      // Add user to Firestore
+      await setDoc(doc(this.firestore, 'users', cred.user.uid), {
+        email: this.email,
+        createdAt: new Date(),
+        isMember: false // or any default fields you want
+      });
       this.close.emit();
     } catch (err: any) {
       this.error = err.message;
@@ -38,7 +45,13 @@ export class RegisterComponent {
   async registerWithGoogle() {
     this.error = '';
     try {
-      await signInWithPopup(this.auth, new GoogleAuthProvider());
+      const cred: UserCredential = await signInWithPopup(this.auth, new GoogleAuthProvider());
+      // Add user to Firestore (if new)
+      await setDoc(doc(this.firestore, 'users', cred.user.uid), {
+        email: cred.user.email,
+        createdAt: new Date(),
+        isMember: false
+      }, { merge: true });
       this.close.emit();
     } catch (err: any) {
       this.error = err.message;
