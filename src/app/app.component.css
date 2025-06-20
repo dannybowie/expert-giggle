@@ -57,3 +57,9 @@ footer {
   border-bottom: 2px solid #d7263d; /* or your preferred color */
   padding-bottom: 2px;
 }
+
+.page-container {
+  max-width: 1920px;
+  margin: 0 auto;
+  width: 100%;
+}
