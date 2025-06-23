@@ -55,11 +55,5 @@ export class AppComponent {
     this.isLoginMode = !this.isLoginMode;
     console.log('switchAuthMode called, isLoginMode:', this.isLoginMode);
   }
-
-  onUserRegistered() {
-    this.showRegisterModal = false;
-    this.isLoggedIn = true; // Or update your auth state accordingly
-    // Optionally fetch user info or redirect
-  }
 }
 

@@ -24,13 +24,14 @@ export class RegisterComponent {
 
   auth = inject(Auth);
 
-  constructor(private firestore: Firestore) {}
-
-  ngOnInit() {
+  constructor(private firestore: Firestore) {
     user(this.auth).subscribe(currentUser => {
       this.isLoggedIn = !!currentUser;
       // Optionally store user info
     });
+  }
+
+  ngOnInit() {
   }
 
   async registerWithEmail(email: string, password: string) {
