@@ -28,7 +28,8 @@
       (switchToRegister)="switchAuthMode()"
     ></app-login>
     <app-register
-      *ngIf="!isLoginMode"
+      *ngIf="showRegisterModal"
+      (registered)="onUserRegistered()"
       (close)="closeAuthModal()"
       (switchToLogin)="switchAuthMode()"
     ></app-register>

@@ -1,7 +1,7 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, inject } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Auth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, UserCredential } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, UserCredential, user } from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 
 @Component({
@@ -14,31 +14,37 @@ import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 export class RegisterComponent {
   @Output() close = new EventEmitter<void>();
   @Output() switchToLogin = new EventEmitter<void>();
+  @Output() registered = new EventEmitter<void>();
 
   email = '';
   password = '';
   confirmPassword = ''; 
   error = '';
+  isLoggedIn = false;
 
-  constructor(private auth: Auth, private firestore: Firestore) {}
+  auth = inject(Auth);
 
-  async registerWithEmail() {
-    this.error = '';
-    if (this.password !== this.confirmPassword) {
-      this.error = 'Passwords do not match.';
+  constructor(private firestore: Firestore) {}
+
+  ngOnInit() {
+    user(this.auth).subscribe(currentUser => {
+      this.isLoggedIn = !!currentUser;
+      // Optionally store user info
+    });
+  }
+
+  async registerWithEmail(email: string, password: string) {
+    if (!email || !password || password.length < 6) {
+      this.error = 'Please enter a valid email and a password with at least 6 characters.';
       return;
     }
     try {
-      const cred: UserCredential = await createUserWithEmailAndPassword(this.auth, this.email, this.password);
-      // Add user to Firestore
-      await setDoc(doc(this.firestore, 'users', cred.user.uid), {
-        email: this.email,
-        createdAt: new Date(),
-        isMember: false // or any default fields you want
-      });
-      this.close.emit();
-    } catch (err: any) {
-      this.error = err.message;
+      await createUserWithEmailAndPassword(this.auth, email, password);
+      this.registered.emit(); // Notify parent component
+      // Optionally close modal or reset form here
+    } catch (error: any) {
+      this.error = error.message || 'Registration failed.';
+      console.error(error);
     }
   }
 
