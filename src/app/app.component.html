@@ -9,7 +9,7 @@
     </div>
     <div class="nav-right">
       <ng-container *ngIf="!isLoggedIn; else profileLink">
-        <a (click)="openAuthModal('register')">Login/Register</a>
+        <a (click)="openAuthModal('login')">Login/Register</a>
       </ng-container>
       <ng-template #profileLink>
         <a routerLink="/profile">Profile</a>
