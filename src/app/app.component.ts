@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router'; // <-- Add RouterLinkActive
-import { NgIf } from '@angular/common';
+import { NgIf, isPlatformBrowser } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +27,17 @@ export class AppComponent {
   showAuthModal = false;
   isLoginMode = true; // true = login, false = register
 
-  constructor() {
-    console.log('AppComponent initialized');
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo({ top: 0 }); // or just window.scrollTo(0, 0);
+        }
+      });
   }
 
   openAuthModal(mode: 'login' | 'register' = 'login') {

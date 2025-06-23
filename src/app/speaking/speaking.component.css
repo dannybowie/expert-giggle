@@ -1,17 +1,20 @@
 .speaking-hero {
-  background: linear-gradient(120deg, #fff 60%, #fbeaec 100%);
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(215,38,61,0.06);
-  max-width: 800px;
-  margin: 2.5em auto 2em auto;
-  padding: 2.5em 2em 2em 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px 40px 20px;
+  background: none; /* Remove gradient */
+  border-radius: 0;
+  box-shadow: none;
+  max-width: 100%;
   text-align: center;
 }
 
 .speaking-hero h1 {
   color: #d7263d;
   font-size: 2.5rem;
-  margin-bottom: 1em;
+  margin-bottom: 20px;
   letter-spacing: 1px;
 }
 
@@ -20,6 +23,7 @@
   font-size: 1.15rem;
   margin-bottom: 1.5em;
   line-height: 1.6;
+  max-width: 600px;
 }
 
 .speaking-hero ul {
@@ -36,13 +40,28 @@
   list-style: disc;
 }
 
+.speaker-image {
+  max-width: 220px;
+  border-radius: 12px;
+  margin-bottom: 1.5em;
+}
+
+@media (max-width: 600px) {
+  .speaking-hero h1 {
+    font-size: 1.5rem;
+  }
+  .speaking-hero p {
+    font-size: 1rem;
+  }
+}
+
 .booking-form-section {
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  max-width: 600px; /* Wider than before */
   margin: 2em auto 3em auto;
-  padding: 2em 2.5em;
+  padding: 2.5em 2.5em 2em 2.5em;
 }
 
 .booking-form-section h2 {
@@ -55,7 +74,7 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1.2em;
 }
 
 label {
@@ -66,8 +85,8 @@ label {
   margin-bottom: 0.5em;
 }
 
-input[type="text"],
-input[type="email"],
+input[type='text'],
+input[type='email'],
 textarea {
   padding: 0.75em;
   border: 1px solid #ccc;
@@ -75,9 +94,10 @@ textarea {
   font-size: 1em;
   margin-top: 0.5em;
   resize: vertical;
+  background: #f8f6f3;
 }
 
-button[type="submit"] {
+button[type='submit'] {
   background: #d7263d;
   color: #fff;
   font-weight: bold;
@@ -90,7 +110,7 @@ button[type="submit"] {
   transition: background 0.2s;
 }
 
-button[type="submit"]:hover:enabled {
+button[type='submit']:hover:enabled {
   background: #b71c2a;
 }
 
@@ -110,13 +130,4 @@ button[type="submit"]:hover:enabled {
   padding: 1em;
   margin-top: 1.5em;
   text-align: center;
-}
-
-@media (max-width: 600px) {
-  .speaking-hero {
-    padding: 1.2em 0.5em;
-  }
-  .speaking-hero h1 {
-    font-size: 1.5rem;
-  }
 }
