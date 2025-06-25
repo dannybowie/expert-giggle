@@ -1,4 +1,5 @@
 <div class="page-container">
+  <div *ngIf="toastMessage" class="toast">{{ toastMessage }}</div>
 <header>
   <nav class="main-nav">
     <div class="nav-left">
@@ -8,11 +9,19 @@
       <a routerLink="/speaking" routerLinkActive="active-link">SPEAKING</a>
     </div>
     <div class="nav-right">
-      <ng-container *ngIf="!isLoggedIn; else profileLink">
+      <ng-container *ngIf="!isLoggedIn; else userMenu">
         <a (click)="openAuthModal('login')">Login/Register</a>
       </ng-container>
-      <ng-template #profileLink>
-        <a routerLink="/profile">Profile</a>
+      <ng-template #userMenu>
+        <div class="user-menu" (mouseleave)="showMenu = false">
+          <span class="user-name" (click)="showMenu = !showMenu">
+            Hello, {{ firstName || 'Account' }}
+          </span>
+          <div class="dropdown" *ngIf="showMenu">
+            <a routerLink="/profile">Profile</a>
+            <a (click)="logout()">Log out</a>
+          </div>
+        </div>
       </ng-template>
     </div>
   </nav>

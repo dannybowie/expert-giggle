@@ -3,6 +3,14 @@
   <h2>Register</h2>
   <form (ngSubmit)="registerWithEmail(email, password)">
     <label>
+      First Name:
+      <input type="text" [(ngModel)]="firstName" name="firstName" required />
+    </label>
+    <label>
+      Last Name:
+      <input type="text" [(ngModel)]="lastName" name="lastName" required />
+    </label>
+    <label>
       Email:
       <input type="email" [(ngModel)]="email" name="email" required />
     </label>
@@ -14,8 +22,14 @@
       Confirm Password:
       <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required minlength="6" />
     </label>
-    <button type="submit" class="register-btn">Register</button>
+    <button type="submit" class="register-btn" [disabled]="loading">
+      <span *ngIf="!loading">Register</span>
+      <span *ngIf="loading">Registering...</span>
+    </button>
   </form>
+  <div class="success" *ngIf="success">
+    Registration successful! Welcome aboard.
+  </div>
   <div class="divider">or</div>
   <button (click)="registerWithGoogle()" class="google-btn">Sign up with Google</button>
   <button class="close-btn" (click)="onClose()">Close</button>

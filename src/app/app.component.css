@@ -63,3 +63,62 @@ footer {
   margin: 0 auto;
   width: 100%;
 }
+
+/* Add to your global or nav CSS */
+.user-menu {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.user-name {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  min-width: 140px;
+  z-index: 100;
+  text-align: left;
+}
+
+.dropdown a {
+  display: block;
+  padding: 10px 16px;
+  color: #222;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dropdown a:hover {
+  background: #f7f7f7;
+}
+
+.toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 1em 2em;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  z-index: 2000;
+  font-size: 1.1em;
+  opacity: 0.97;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-20px);}
+  to   { opacity: 0.97; transform: translateX(-50%) translateY(0);}
+}

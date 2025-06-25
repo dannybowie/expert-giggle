@@ -36,6 +36,7 @@ label {
   color: #222;
   margin-bottom: 0.5em;
 }
+input[type="text"],
 input[type="email"],
 input[type="password"] {
   padding: 0.75em;
@@ -52,10 +53,12 @@ button[type="submit"], .google-btn, .close-btn {
   border-radius: 6px;
   font-size: 1em;
   margin-top: 0.5em;
+  cursor: pointer; /* Ensure pointer on hover */
 }
-button[type="submit"] {
-  background: #d7263d;
-  color: #fff;
+button[type="submit"]:hover,
+.google-btn:hover,
+.close-btn:hover {
+  filter: brightness(0.95);
 }
 .google-btn {
   background: #4285F4;
@@ -78,6 +81,15 @@ button[type="submit"] {
   margin-top: 1em;
   text-align: center;
 }
+.success {
+  color: #388e3c;
+  background: #e8f5e9;
+  border-radius: 6px;
+  padding: 1em;
+  margin-top: 1.5em;
+  text-align: center;
+  font-weight: bold;
+}
 p {
   text-align: center;
   margin-top: 1em;
@@ -85,5 +97,5 @@ p {
 a {
   color: #d7263d;
   text-decoration: underline;
-  cursor: pointer;
+  cursor: pointer; /* Ensure pointer on hover */
 }

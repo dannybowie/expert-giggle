@@ -16,11 +16,15 @@ export class RegisterComponent {
   @Output() switchToLogin = new EventEmitter<void>();
   @Output() registered = new EventEmitter<void>();
 
+  firstName = '';
+  lastName = '';
   email = '';
   password = '';
   confirmPassword = ''; 
   error = '';
   isLoggedIn = false;
+  loading = false;
+  success = false;
 
   auth = inject(Auth);
 
@@ -31,21 +35,43 @@ export class RegisterComponent {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async registerWithEmail(email: string, password: string) {
+    this.error = '';
+    this.success = false;
+    this.loading = true;
     if (!email || !password || password.length < 6) {
       this.error = 'Please enter a valid email and a password with at least 6 characters.';
+      this.loading = false;
+      return;
+    }
+    if (!this.firstName || !this.lastName) {
+      this.error = 'Please enter your first and last name.';
+      this.loading = false;
+      return;
+    }
+    if (this.password !== this.confirmPassword) {
+      this.error = 'Passwords do not match.';
+      this.loading = false;
       return;
     }
     try {
-      await createUserWithEmailAndPassword(this.auth, email, password);
-      this.registered.emit(); // Notify parent component
-      // Optionally close modal or reset form here
+      const cred = await createUserWithEmailAndPassword(this.auth, email, password);
+      // Save user info to Firestore
+      await setDoc(doc(this.firestore, 'users', cred.user.uid), {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        createdAt: new Date(),
+        isMember: false
+      });
+      this.success = true;
+      // Optionally reset form fields here
     } catch (error: any) {
       this.error = error.message || 'Registration failed.';
-      console.error(error);
+    } finally {
+      this.loading = false;
     }
   }
 
@@ -65,7 +91,6 @@ export class RegisterComponent {
     }
   }
 
-  // This is the correct close method
   onClose() {
     this.close.emit();
   }
