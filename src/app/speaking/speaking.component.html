@@ -17,7 +17,7 @@
           Invite BeBe to your conference, school, organization, or community event for a transformative experience.
         </p>
       </div>
-      <section class="booking-form-section">
+      <section class="booking-form-section" [class.form-disabled]="!isLoggedIn">
         <h2>Request a Speaking Engagement</h2>
         <form (ngSubmit)="onSubmit()">
           <label>
@@ -50,4 +50,6 @@
       </section>
     </div>
   </div>
+  <div>Logged in? {{ isLoggedIn }}</div>
 </div>
+<app-speaking [isLoggedIn]="isLoggedIn"></app-speaking>

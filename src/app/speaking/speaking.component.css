@@ -138,3 +138,19 @@ button[type='submit']:hover:enabled {
   margin-top: 1.5em;
   text-align: center;
 }
+
+/* Add to your speaking.component.css */
+.form-disabled {
+  opacity: 0.6;
+  filter: grayscale(0.5);
+  background: #f3f3f3 !important;
+}
+
+.form-disabled input,
+.form-disabled textarea,
+.form-disabled button {
+  background: #e0e0e0 !important;
+  color: #888 !important;
+  cursor: not-allowed !important;
+  border-color: #ccc !important;
+}
