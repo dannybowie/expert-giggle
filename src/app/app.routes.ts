@@ -5,6 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { BookComponent } from './book/book.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SpeakingComponent } from './speaking/speaking.component';
+import { ProfileComponent } from './profile/profile.component'; // Placeholder for profile component
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -12,7 +13,8 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent }, 
   { path: 'book', component: BookComponent }, 
   { path: 'not-found', component: NotFoundComponent }, 
-  { path: 'speaking', component: SpeakingComponent }, 
+  { path: 'speaking', component: SpeakingComponent },
+  { path: 'profile', component: ProfileComponent }, // Placeholder for profile component
   { path: '**', redirectTo: 'home' }
 ];
 

@@ -55,10 +55,21 @@ button[type="submit"], .google-btn, .close-btn {
   margin-top: 0.5em;
   cursor: pointer; /* Ensure pointer on hover */
 }
-button[type="submit"]:hover,
-.google-btn:hover,
+button[type="submit"] {
+  background: #d7263d;
+  color: #fff;
+}
+button[type="submit"]:hover {
+  background: #a81c2a;
+  color: #fff;
+}
+.google-btn:hover {
+  background: #3367d6;
+  color: #fff;
+}
 .close-btn:hover {
-  filter: brightness(0.95);
+  background: #ccc;
+  color: #111;
 }
 .google-btn {
   background: #4285F4;
@@ -80,6 +91,10 @@ button[type="submit"]:hover,
   color: #d7263d;
   margin-top: 1em;
   text-align: center;
+  max-width: 320px;
+  word-break: break-word;
+  margin-left: auto;
+  margin-right: auto;
 }
 .success {
   color: #388e3c;

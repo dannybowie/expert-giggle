@@ -22,13 +22,31 @@ export class LoginComponent {
 
   constructor(private auth: Auth, private firestore: Firestore) {}
 
+  getFriendlyError(error: any): string {
+    if (!error || !error.code) return 'An unknown error occurred. Please try again.';
+    switch (error.code) {
+      case 'auth/user-not-found':
+        return 'No account found with this email.';
+      case 'auth/wrong-password':
+        return 'Incorrect password. Please try again.';
+      case 'auth/invalid-email':
+        return 'Please enter a valid email address.';
+      case 'auth/popup-closed-by-user':
+        return 'The sign-in popup was closed before completing sign in.';
+      case 'auth/too-many-requests':
+        return 'Too many failed attempts. Please try again later.';
+      default:
+        return 'Login failed. Please check your credentials and try again.';
+    }
+  }
+
   async loginWithEmail() {
     this.error = '';
     try {
       await signInWithEmailAndPassword(this.auth, this.email, this.password);
       this.close.emit();
     } catch (err: any) {
-      this.error = err.message;
+      this.error = this.getFriendlyError(err);
     }
   }
 
@@ -38,14 +56,13 @@ export class LoginComponent {
       await signInWithPopup(this.auth, new GoogleAuthProvider());
       this.close.emit();
     } catch (err: any) {
-      this.error = err.message;
+      this.error = this.getFriendlyError(err);
     }
   }
 
   async loginWithUsername() {
     this.error = '';
     try {
-      // Query Firestore for the user with this username
       const usersRef = collection(this.firestore, 'users');
       const q = query(usersRef, where('username', '==', this.username));
       const querySnapshot = await getDocs(q);
@@ -55,16 +72,14 @@ export class LoginComponent {
         return;
       }
 
-      // Get the email from the user document
       const userDoc = querySnapshot.docs[0];
       const userData = userDoc.data() as any;
       const email = userData.email;
 
-      // Now log in with email and password
       await signInWithEmailAndPassword(this.auth, email, this.password);
       this.close.emit();
     } catch (err: any) {
-      this.error = err.message;
+      this.error = this.getFriendlyError(err);
     }
   }
 

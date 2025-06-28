@@ -89,16 +89,6 @@ body {
   /* Clean, modern, inviting */
 }
 
-.books-authored::before {
-  content: "";
-  display: block;
-  width: 320px;
-  height: 5px;
-  margin: 0 auto 2em auto;
-  background: linear-gradient(90deg, #d7263d 0%, #fff 40%, #2d6cdf 100%);
-  border-radius: 3px;
-  opacity: 0.5;
-}
 
 .books-authored h2 {
   color: #d7263d;
@@ -124,10 +114,10 @@ body {
   transition: box-shadow 0.2s, background 0.2s;
 }
 
-.book-item:hover {
+/* .book-item:hover {
   background: #fbeff6;
   box-shadow: 0 4px 24px rgba(215,38,61,0.08);
-}
+} */
 
 .book-thumb {
   width: 90px;
@@ -164,6 +154,7 @@ body {
 .buy-btn:hover,
 .buy-btn:focus {
   background: #a81c2a;
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {
