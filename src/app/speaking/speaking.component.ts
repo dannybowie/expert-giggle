@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { AuthService } from '../auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-speaking',
@@ -10,8 +12,8 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
   templateUrl: './speaking.component.html',
   styleUrls: ['./speaking.component.css']
 })
-export class SpeakingComponent {
-  @Input() isLoggedIn = false;
+export class SpeakingComponent implements OnInit, OnDestroy {
+  isLoggedIn = false;
 
   name = '';
   email = '';
@@ -20,7 +22,19 @@ export class SpeakingComponent {
   submitted = false;
   error = '';
 
-  constructor(private firestore: Firestore) {}
+  private authSub?: Subscription;
+
+  constructor(private firestore: Firestore, private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authSub = this.authService.isLoggedIn().subscribe(status => {
+      this.isLoggedIn = status;
+    });
+  }
+
+  ngOnDestroy() {
+    this.authSub?.unsubscribe();
+  }
 
   async onSubmit() {
     try {

@@ -79,13 +79,13 @@ body {
 
 .books-authored {
   margin: 2em auto 0 auto;
-  max-width: 900px;
+  max-width: 1020px;
   padding: 2em 1.5em 1.5em 1.5em;
   text-align: left;
   position: relative;
-  background: #f7f8fa; /* Very light grey */
+  background: #f7e4c5; /* Slightly tanner/darker than #fff for contrast */
   border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(44,44,44,0.05);
+  box-shadow: 0 8px 36px rgba(44,44,44,0.13); /* Stronger shadow for more pop */
   /* Clean, modern, inviting */
 }
 
