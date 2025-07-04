@@ -26,11 +26,11 @@ export const routes: Routes = [
     path: 'blog', 
     loadComponent: () => import('./blog/blog.component').then(m => m.BlogComponent)
   },
-  { 
-    path: 'blog/:id', 
-    loadComponent: () => import('./blog-post/blog-post.component').then(m => m.BlogPostComponent),
-    data: { prerender: false }
-  },
+  // { 
+  //   path: 'blog/:id', 
+  //   loadComponent: () => import('./blog-post/blog-post.component').then(m => m.BlogPostComponent),
+  //   data: { prerender: false }
+  // },
   { 
     path: 'not-found', 
     loadComponent: () => import('./not-found/not-found.component').then(m => m.NotFoundComponent)
