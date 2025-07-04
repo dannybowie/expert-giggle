@@ -5,7 +5,9 @@ import { AboutComponent } from './about/about.component';
 import { BookComponent } from './book/book.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SpeakingComponent } from './speaking/speaking.component';
-import { ProfileComponent } from './profile/profile.component'; // Placeholder for profile component
+import { ProfileComponent } from './profile/profile.component'; 
+import { BlogComponent } from './blog/blog.component';
+import { BlogPostComponent } from './blog-post/blog-post.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,7 +16,9 @@ export const routes: Routes = [
   { path: 'book', component: BookComponent }, 
   { path: 'not-found', component: NotFoundComponent }, 
   { path: 'speaking', component: SpeakingComponent },
-  { path: 'profile', component: ProfileComponent }, // Placeholder for profile component
+  { path: 'profile', component: ProfileComponent }, 
+  { path: 'blog', component: BlogComponent },
+  { path: 'blog/:id', component: BlogPostComponent }, // Single post view
   { path: '**', redirectTo: 'home' }
 ];
 

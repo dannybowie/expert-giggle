@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router'; // <-- Add RouterLinkActive
 import { NgIf, isPlatformBrowser } from '@angular/common';
 import { LoginComponent } from './login/login.component';
@@ -8,6 +8,9 @@ import { filter } from 'rxjs/operators';
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
 import { getDoc, doc } from 'firebase/firestore'; // <-- Import Firestore functions
 import { Firestore } from '@angular/fire/firestore';
+import { AuthService, AppUser } from './auth.service'; // adjust path as needed
+import { BlogService } from './blog.service'; // <-- Import BlogService
+import { Timestamp } from 'firebase/firestore'; // <-- Import Timestamp
 
 @Component({
   selector: 'app-root',
@@ -22,7 +25,7 @@ import { Firestore } from '@angular/fire/firestore';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Front-End';
   message = 'A message to you';
 
@@ -35,11 +38,18 @@ export class AppComponent {
   toastMessage = '';
   toastTimeout: any;
 
+  currentUser: AppUser | null = null; // <-- Add this line
+  canEdit = false; // <-- Add this line
+  accessDenied = false; // <-- Add this line
+  posts: any[] = []; // <-- Add this line
+
   constructor(
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object,
     private auth: Auth, // <-- Inject Auth
-    private firestore: Firestore // <-- Add this
+    private firestore: Firestore, // <-- Add this
+    private authService: AuthService, // <-- Inject AuthService
+    private blogService: BlogService // <-- Inject BlogService
   ) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -61,6 +71,30 @@ export class AppComponent {
         this.displayName = '';
         this.firstName = '';
       }
+    });
+
+    this.authService.currentUser().subscribe((user: AppUser | null) => {
+      this.currentUser = user;
+    });
+  }
+
+  ngOnInit() {
+    this.authService.currentUser().subscribe(user => {
+      this.currentUser = user;
+      this.canEdit = !!(user as any)?.canEdit;
+      if (!user?.isMember) {
+        this.accessDenied = true;
+        return;
+      }
+      // Only load posts if member
+      this.blogService.getPosts().subscribe(posts => {
+        this.posts = posts.map(post => ({
+          ...post,
+          date: post.date && post.date instanceof Timestamp
+            ? post.date.toDate()
+            : post.date
+        }));
+      });
     });
   }
 

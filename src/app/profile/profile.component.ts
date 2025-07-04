@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { NgIf, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  standalone: true,
+  imports: [NgIf, DatePipe],
 })
 export class ProfileComponent {
   email = 'user@example.com'; // Replace with actual user data

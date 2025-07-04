@@ -64,7 +64,8 @@ export class RegisterComponent {
         lastName: this.lastName,
         email: this.email,
         createdAt: new Date(),
-        isMember: false
+        isMember: false,
+        canEdit: false // <-- Add this line
       });
       this.success = true;
       // Optionally reset form fields here
@@ -83,7 +84,8 @@ export class RegisterComponent {
       await setDoc(doc(this.firestore, 'users', cred.user.uid), {
         email: cred.user.email,
         createdAt: new Date(),
-        isMember: false
+        isMember: false,
+        canEdit: false // <-- Add this line
       }, { merge: true });
       this.close.emit();
     } catch (err: any) {
