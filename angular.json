@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "profileBowie": {
+    "expert-giggle": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "profileBowie:build:production"
+              "buildTarget": "expert-giggle:build:production"
             },
             "development": {
-              "buildTarget": "profileBowie:build:development"
+              "buildTarget": "expert-giggle:build:development"
             }
           },
           "defaultConfiguration": "development"
