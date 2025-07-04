@@ -1,16 +1,75 @@
-<body>
+<div class="page-container">
+  <div *ngIf="toastMessage" class="toast">{{ toastMessage }}</div>
+  <header>
+    <nav class="main-nav">
+      <div class="nav-left">
+        <a routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">HOME</a>
+        <a routerLink="/about" routerLinkActive="active-link">ABOUT</a>
+        <a routerLink="/book" routerLinkActive="active-link">BOOK</a>
+        <a routerLink="/speaking" routerLinkActive="active-link">EVENTS</a>
+        <a
+          *ngIf="currentUser?.isMember; else locked"
+          routerLink="/blog"
+          routerLinkActive="active-link"
+          >Blog</a>
+        <ng-template #locked>
+          <span
+            class="nav-lock"
+            style="cursor: not-allowed; opacity: 0.6; position: relative;"
+            title="Available to members only"
+            tabindex="0"
+            aria-disabled="true"
+          >
+            Blog <span class="lock-icon">🔒</span>
+          </span>
+        </ng-template>
+      </div>
+      <div class="nav-right">
+        <ng-container *ngIf="!isLoggedIn; else userMenu">
+          <a (click)="openAuthModal('login')">Login/Register</a>
+        </ng-container>
+        <ng-template #userMenu>
+          <div class="user-menu" (mouseleave)="showMenu = false">
+            <span class="user-name" (click)="showMenu = !showMenu">
+              Hello, {{ currentUser?.firstName || 'Account' }}
+            </span>
+            <div class="dropdown" *ngIf="showMenu">
+              <a routerLink="/profile">Profile</a>
+              <a (click)="logout()">Log out</a>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </nav>
+  </header>
 
-  <nav>
-    <a routerLink="/">HOME</a>
-    <a routerLink="/about">ABOUT</a>
-    <a routerLink="/book">BOOK</a>
-    <a routerLink="/speaking">SPEAKING</a>
-  </nav>
+  <!-- Single modal, switch content -->
+  <div *ngIf="showAuthModal">
+    <div class="modal-backdrop" (click)="closeAuthModal()"></div>
+    <div class="modal">
+      <app-login
+        *ngIf="isLoginMode"
+        (close)="closeAuthModal()"
+        (switchToRegister)="switchAuthMode()"
+      ></app-login>
+      <app-register
+        *ngIf="!isLoginMode"
+        (close)="closeAuthModal()"
+        (switchToLogin)="switchAuthMode()"
+      ></app-register>
+    </div>
+  </div>
 
   <router-outlet></router-outlet>
-    
+
+  <div *ngIf="accessDenied">
+    <p>You must be a member to view this page.</p>
+  </div>
+  <div *ngIf="!accessDenied">
+    <!-- ...rest of blog content... -->
+  </div>
+
   <footer>
     <p>© 2025 BeBe Bowie. All rights reserved.</p>
   </footer>
-
-</body>
+</div>

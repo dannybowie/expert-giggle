@@ -1,0 +1,29 @@
+.comments-section {
+  margin-top: 2em;
+  background: #fff8e6;
+  border-radius: 10px;
+  padding: 1em;
+}
+.comments-section h3 {
+  margin-top: 0;
+}
+.comments-section form {
+  margin-top: 1em;
+  display: flex;
+  gap: 0.5em;
+}
+.comments-section input {
+  flex: 1;
+  padding: 0.5em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.comments-section button {
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  border: none;
+  background: #d7263d;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}

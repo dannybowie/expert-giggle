@@ -1,0 +1,31 @@
+<section class="profile-section">
+  <h1>Your Profile</h1>
+  
+  <div class="profile-info">
+    <label>Email:</label>
+    <span>{{ email }}</span>
+  </div>
+  <div class="profile-info">
+    <label>Username:</label>
+    <span>{{ username }}</span>
+  </div>
+
+  <hr />
+
+  <section class="payment-section">
+    <h2>Payment Methods</h2>
+    <p *ngIf="!hasPaymentMethod">No payment method on file.</p>
+    <!-- List payment methods here -->
+    <button (click)="addPaymentMethod()">Add Payment Method</button>
+  </section>
+
+  <hr />
+
+  <section class="subscription-section">
+    <h2>Subscription</h2>
+    <p *ngIf="!isSubscribed">You are not subscribed.</p>
+    <p *ngIf="isSubscribed">Your subscription is active until {{ subscriptionEnd | date }}</p>
+    <button *ngIf="!isSubscribed" (click)="subscribe()">Subscribe</button>
+    <button *ngIf="isSubscribed" (click)="manageSubscription()">Manage Subscription</button>
+  </section>
+</section>

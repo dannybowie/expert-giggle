@@ -1,9 +1,9 @@
 /* Header / Hero Section */
-header {
+.hero {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: url('/IMG_042621.png') no-repeat center center;
+  background: url('/IMG_042621.webp') no-repeat center center;
   background-size: cover;
   padding: 80px 60px;
   color: white;
@@ -73,9 +73,10 @@ header {
 }
 
 .author-bio img {
-  width: 100%;
+  width: 50%;
+  display: block;
+  margin: 0 auto 20px auto;
   border-radius: 8px;
-  margin-bottom: 20px;
 }
 
 .author-bio h3 {

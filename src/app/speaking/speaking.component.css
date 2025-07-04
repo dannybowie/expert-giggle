@@ -1,0 +1,156 @@
+.speaking-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px 40px 20px;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: 100%;
+  text-align: center;
+}
+
+.speaker-image {
+  max-width: 220px;
+  border-radius: 12px;
+  margin-bottom: 2em;
+}
+
+.speaking-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5em;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.speaking-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-right: 1em;
+}
+
+.speaking-info h1 {
+  color: #d7263d;
+  font-size: 2.2rem;
+  margin-bottom: 1em;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+.speaking-info p {
+  color: #333;
+  font-size: 1.15rem;
+  margin-bottom: 1.5em;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+@media (max-width: 900px) {
+  .speaking-content-grid {
+    grid-template-columns: 1fr;
+    gap: 2em;
+    text-align: center;
+  }
+  .speaking-info {
+    align-items: center;
+    padding-right: 0;
+  }
+}
+
+.booking-form-section {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  max-width: 600px; /* Wider than before */
+  margin: 2em auto 3em auto;
+  padding: 2.5em 2.5em 2em 2.5em;
+}
+
+.booking-form-section h2 {
+  text-align: center;
+  color: #d7263d;
+  margin-bottom: 1.5em;
+  font-size: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.5em;
+}
+
+input[type='text'],
+input[type='email'],
+textarea {
+  padding: 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+  margin-top: 0.5em;
+  resize: vertical;
+  background: #f8f6f3;
+}
+
+button[type='submit'] {
+  background: #d7263d;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  padding: 0.75em;
+  margin-top: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button[type='submit']:hover:enabled {
+  background: #b71c2a;
+}
+
+.success-message {
+  color: #388e3c;
+  background: #e8f5e9;
+  border-radius: 6px;
+  padding: 1em;
+  margin-top: 1.5em;
+  text-align: center;
+}
+
+.error-message {
+  color: #d7263d;
+  background: #fdeaea;
+  border-radius: 6px;
+  padding: 1em;
+  margin-top: 1.5em;
+  text-align: center;
+}
+
+/* Add to your speaking.component.css */
+.form-disabled {
+  opacity: 0.6;
+  filter: grayscale(0.5);
+  background: #f3f3f3 !important;
+}
+
+.form-disabled input,
+.form-disabled textarea,
+.form-disabled button {
+  background: #e0e0e0 !important;
+  color: #888 !important;
+  cursor: not-allowed !important;
+  border-color: #ccc !important;
+}
