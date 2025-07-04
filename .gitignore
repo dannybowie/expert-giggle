@@ -51,6 +51,7 @@ Thumbs.db
 
 # Add this line to .gitignore
 .env
+.env.*
 
 # IDE/editor settings
 .vscode/
