@@ -1,5 +1,3 @@
-// Import the functions you need from the SDKs you need
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,5 +18,3 @@ export const environment = {
   production: false,
   firebase: firebaseConfig
 };
-
-provideFirebaseApp(() => initializeApp(environment.firebase));

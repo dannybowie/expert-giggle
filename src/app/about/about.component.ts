@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { routes } from '../app.routes';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,7 +7,7 @@ import { RouterLink } from '@angular/router';
     RouterLink
   ],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.css'
+  styleUrls: ['./about.component.css'] // <-- fixed typo
 })
 export class AboutComponent {
 
