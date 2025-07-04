@@ -18,5 +18,4 @@ export const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'blog/:id', component: BlogPostComponent },
-  { path: '**', redirectTo: 'home' }
 ];
