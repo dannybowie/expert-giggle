@@ -49,8 +49,8 @@ Thumbs.db
 /out-tsc/
 /.angular/
 
-# Environment files (if you have secrets in them)
-src/environments/environment*.ts
+# Add this line to .gitignore
+.env
 
 # IDE/editor settings
 .vscode/
