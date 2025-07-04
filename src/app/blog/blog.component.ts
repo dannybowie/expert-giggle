@@ -16,26 +16,30 @@ import { AuthService } from '../auth.service';
 })
 export class BlogComponent implements OnInit {
   posts: BlogPost[] = [];
-  canEdit = true; // Set this based on your auth logic
+  canEdit = false;
   showNewPostForm = false;
   newPost = { title: '', content: '' };
   currentUser: any = null;
+  accessDenied = false;
 
   constructor(private blogService: BlogService, private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.currentUser().subscribe(user => {
       this.currentUser = user;
-      this.canEdit = !!(user as any)?.canEdit; // <-- Fix here
-    });
-
-    this.blogService.getPosts().subscribe(posts => {
-      this.posts = posts.map(post => ({
-        ...post,
-        date: post.date && post.date instanceof Timestamp
-          ? post.date.toDate()
-          : post.date
-      }));
+      this.canEdit = !!(user as any)?.canEdit;
+      if (!user?.isMember) {
+        this.accessDenied = true;
+        return;
+      }
+      this.blogService.getPosts().subscribe(posts => {
+        this.posts = posts.map(post => ({
+          ...post,
+          date: post.date && post.date instanceof Timestamp
+            ? post.date.toDate()
+            : post.date
+        }));
+      });
     });
   }
 
