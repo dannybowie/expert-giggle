@@ -1,0 +1,29 @@
+.blog-page {
+  max-width: 800px;
+  margin: 2em auto;
+  padding: 1em;
+}
+.blog-post {
+  background: #fff8e6;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(44,44,44,0.06);
+  margin-bottom: 2em;
+  padding: 1.5em;
+}
+.blog-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1em;
+}
+.meta {
+  color: #888;
+  font-size: 0.95em;
+  margin-bottom: 1em;
+}
+.content {
+  color: #333;
+  font-size: 1.1em;
+  line-height: 1.7;
+}

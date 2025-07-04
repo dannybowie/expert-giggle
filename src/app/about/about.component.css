@@ -1,0 +1,184 @@
+body {
+  background: #fff; /* or your preferred background */
+}
+
+.about-author,
+.books-authored {
+  max-width: 1200px;   /* or 1400px for even wider */
+  width: 90vw;
+  margin: 1.5em auto 0.5em auto;
+  /* keep other styles as needed */
+}
+
+.about-layout {
+  max-width: 1200px;   /* match the new width */
+  width: 100%;
+  margin: 0 auto;
+  /* keep other styles as needed */
+}
+
+.about-author {
+  display: flex;
+  flex-direction: row;         /* Row: image left, content right */
+  align-items: center; /* <-- vertically center image with text */
+  justify-content: center;
+  gap: 48px;                   /* Space between image and content */
+  max-width: 1400px;    /* Increased from 1200px */
+  width: 96vw;          /* Increased from 90vw */
+  margin: 2.5em auto 2em auto;
+  padding: 0 2vw;       /* Add a little side padding for large screens */
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: left;
+}
+
+.about-author > .about-content {
+  flex: 1;
+  max-width: 900px;     /* Increased from 700px */
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-author h1 {
+  color: #d7263d;
+  font-size: 2.3rem;
+  margin-bottom: 1.2em;
+  letter-spacing: 1px;
+}
+
+.author-photo {
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  flex-shrink: 0;
+  margin: 0; /* Remove auto margin */
+}
+
+.about-content h1 {
+  color: #d7263d;
+  font-size: 2.3rem;
+  margin-bottom: 1.2em;
+  letter-spacing: 1px;
+}
+
+.about-content p {
+  color: #333;
+  font-size: 1.13rem;
+  line-height: 1.7;
+  margin-bottom: 1.2em;
+  text-align: left;
+}
+
+.books-authored {
+  margin: 2em auto 0 auto;
+  max-width: 1020px;
+  padding: 2em 1.5em 1.5em 1.5em;
+  text-align: left;
+  position: relative;
+  background: #f7e4c5; /* Slightly tanner/darker than #fff for contrast */
+  border-radius: 18px;
+  box-shadow: 0 8px 36px rgba(44,44,44,0.13); /* Stronger shadow for more pop */
+  /* Clean, modern, inviting */
+}
+
+
+.books-authored h2 {
+  color: #d7263d;
+  font-size: 2rem;
+  margin-bottom: 1.2em;
+}
+
+.books-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.book-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5em;
+  background: rgba(255,255,255,0.7);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(44,44,44,0.04);
+  padding: 1.2em 1em;
+  margin-bottom: 1.5em;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+/* .book-item:hover {
+  background: #fbeff6;
+  box-shadow: 0 4px 24px rgba(215,38,61,0.08);
+} */
+
+.book-thumb {
+  width: 90px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(215,38,61,0.08);
+  flex-shrink: 0;
+}
+
+.book-item h3 {
+  margin: 0 0 0.5em 0;
+  color: #222;
+}
+
+.book-item p {
+  margin: 0 0 1em 0;
+  color: #444;
+}
+
+.buy-btn {
+  display: inline-block;
+  background: #d7263d;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  padding: 0.7em 1.5em;
+  text-decoration: none;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(215,38,61,0.08);
+}
+
+.buy-btn:hover,
+.buy-btn:focus {
+  background: #a81c2a;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .about-author {
+    padding: 1.2em 0.5em;
+  }
+  .about-author h1 {
+    font-size: 1.4rem;
+  }
+  .about-author p {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 900px) {
+  .about-author {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+  }
+  .about-content {
+    align-items: center;
+    text-align: center;
+  }
+}

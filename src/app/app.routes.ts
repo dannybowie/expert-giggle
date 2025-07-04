@@ -1,14 +1,39 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { BookComponent } from './book/book.component';
-import { SpeakingComponent } from './speaking/speaking.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
-    {path: '', component: HomeComponent},
-    {path: 'about', component: AboutComponent},
-    {path: 'book', component: BookComponent},
-    {path: 'speaking', component: SpeakingComponent},
-    {path: '**', component: NotFoundComponent}
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { 
+    path: 'about', 
+    loadComponent: () => import('./about/about.component').then(m => m.AboutComponent)
+  },
+  { 
+    path: 'home', 
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
+  },
+  { 
+    path: 'book', 
+    loadComponent: () => import('./book/book.component').then(m => m.BookComponent)
+  },
+  { 
+    path: 'speaking', 
+    loadComponent: () => import('./speaking/speaking.component').then(m => m.SpeakingComponent)
+  },
+  { 
+    path: 'profile', 
+    loadComponent: () => import('./profile/profile.component').then(m => m.ProfileComponent)
+  },
+  { 
+    path: 'blog', 
+    loadComponent: () => import('./blog/blog.component').then(m => m.BlogComponent)
+  },
+  // { 
+  //   path: 'blog/:id', 
+  //   loadComponent: () => import('./blog-post/blog-post.component').then(m => m.BlogPostComponent),
+  //   data: { prerender: false }
+  // },
+  { 
+    path: 'not-found', 
+    loadComponent: () => import('./not-found/not-found.component').then(m => m.NotFoundComponent)
+  },
+  { path: '**', redirectTo: 'not-found' }
 ];

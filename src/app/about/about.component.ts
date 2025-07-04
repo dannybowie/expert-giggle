@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.css'
+  styleUrls: ['./about.component.css'] // <-- fixed typo
 })
 export class AboutComponent {
 

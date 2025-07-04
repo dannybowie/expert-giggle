@@ -17,25 +17,4 @@ body {
   line-height: 1.6;
   background-color: #f8f6f3;
   color: #222;
-}
-
-/* Navigation */
-nav {
-  background: white;
-  padding: 20px 60px;
-  display: flex;
-  justify-content: flex-start;
-  gap: 40px;
-  font-weight: bold;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-nav a {
-  text-decoration: none;
-  color: #111;
-}
-
-nav a:hover {
-  color: #B62D27;
-}
+} 

@@ -1,0 +1,25 @@
+<!-- blog-post.component.html -->
+<div *ngIf="isEditing; else viewMode">
+  <form (ngSubmit)="savePost()">
+  <input [(ngModel)]="post.title" name="title" required />
+  <textarea [(ngModel)]="post.content" name="content" required></textarea>
+  <button type="submit">Save</button>
+  <button type="button" (click)="isEditing = false">Cancel</button>
+</form>
+</div>
+<ng-template #viewMode>
+  <h2>{{ post.title }}</h2>
+  <div>{{ post.content }}</div>
+  <button *ngIf="canEdit" (click)="isEditing = true">Edit</button>
+</ng-template>
+
+<div class="comments-section">
+  <h3>Comments & Questions</h3>
+  <div *ngFor="let comment of comments">
+    <strong>{{ comment.author }}</strong>: {{ comment.text }}
+  </div>
+  <form (ngSubmit)="addComment()">
+    <input [(ngModel)]="newComment" name="newComment" required placeholder="Leave a comment or question..." />
+    <button type="submit">Post</button>
+  </form>
+</div>
