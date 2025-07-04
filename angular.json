@@ -34,7 +34,8 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
-            }
+            },
+            "baseHref": "/expert-giggle/"
           },
           "configurations": {
             "production": {
@@ -106,3 +107,4 @@
     "analytics": false
   }
 }
+
