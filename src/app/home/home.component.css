@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: url('/assets/IMG_0426221.webp') no-repeat center center;
+  background: url("^assets/IMG_0426221.webp") no-repeat center center;
   background-size: cover;
   padding: 80px 60px;
   color: white;
