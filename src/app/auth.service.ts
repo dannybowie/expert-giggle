@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Auth, onAuthStateChanged, User as FirebaseUser } from '@angular/fire/auth';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 export interface AppUser {
   uid: string;
@@ -17,7 +18,7 @@ export class AuthService {
   private loggedIn$ = new BehaviorSubject<boolean>(false);
   private user$ = new BehaviorSubject<AppUser | null>(null);
 
-  constructor(private auth: Auth, private firestore: Firestore) {
+  constructor(private auth: Auth, private firestore: Firestore, private router: Router) {
     onAuthStateChanged(this.auth, async (user: FirebaseUser | null) => {
       this.loggedIn$.next(!!user);
       if (user) {
@@ -42,5 +43,17 @@ export class AuthService {
 
   currentUser() {
     return this.user$.asObservable();
+  }
+
+  canActivate(): boolean {
+    // Check if user is logged in (adjust based on your auth logic)
+    const user = this.user$.getValue();
+    const isLoggedIn = !!user;
+    
+    if (!isLoggedIn) {
+      this.router.navigate(['/home']);
+      return false;
+    }
+    return true;
   }
 }
