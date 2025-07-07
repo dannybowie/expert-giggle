@@ -1,23 +1,21 @@
 import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router'; // <-- Add RouterLinkActive
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIf, isPlatformBrowser } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
-import { getDoc, doc } from 'firebase/firestore'; // <-- Import Firestore functions
+import { getDoc, doc } from 'firebase/firestore';
 import { Firestore } from '@angular/fire/firestore';
-import { AuthService, AppUser } from './auth.service'; // adjust path as needed
-import { BlogService } from './blog.service'; // <-- Import BlogService
-import { Timestamp } from 'firebase/firestore'; // <-- Import Timestamp
+import { AuthService, AppUser } from './auth.service';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
     RouterLink,
-    RouterLinkActive, // <-- Add this line
+    RouterLinkActive,
     NgIf,
     LoginComponent,
     RegisterComponent
@@ -33,29 +31,27 @@ export class AppComponent implements OnInit {
   showAuthModal = false;
   isLoginMode = true;
   displayName = '';
-  firstName = ''; // <-- Add this line
-  showMenu = false; // <-- Add this line
+  firstName = '';
+  showMenu = false;
   toastMessage = '';
   toastTimeout: any;
 
-  currentUser: AppUser | null = null; // <-- Add this line
-  canEdit = false; // <-- Add this line
-  accessDenied = false; // <-- Add this line
-  posts: any[] = []; // <-- Add this line
+  currentUser: AppUser | null = null;
+  canEdit = false;
+  accessDenied = false;
 
   constructor(
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private auth: Auth, // <-- Inject Auth
-    private firestore: Firestore, // <-- Add this
-    private authService: AuthService, // <-- Inject AuthService
-    private blogService: BlogService // <-- Inject BlogService
+    private auth: Auth,
+    private firestore: Firestore,
+    private authService: AuthService
   ) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         if (isPlatformBrowser(this.platformId)) {
-          window.scrollTo({ top: 0 }); // or just window.scrollTo(0, 0);
+          window.scrollTo({ top: 0 });
         }
       });
 
@@ -86,15 +82,6 @@ export class AppComponent implements OnInit {
         this.accessDenied = true;
         return;
       }
-      // Only load posts if member
-      this.blogService.getPosts().subscribe(posts => {
-        this.posts = posts.map(post => ({
-          ...post,
-          date: post.date && post.date instanceof Timestamp
-            ? post.date.toDate()
-            : post.date
-        }));
-      });
     });
   }
 

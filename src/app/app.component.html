@@ -7,7 +7,7 @@
         <a routerLink="/about" routerLinkActive="active-link">ABOUT</a>
         <a routerLink="/book" routerLinkActive="active-link">BOOK</a>
         <a routerLink="/speaking" routerLinkActive="active-link">EVENTS</a>
-        <a
+        <!-- <a
           *ngIf="currentUser?.isMember; else locked"
           routerLink="/blog"
           routerLinkActive="active-link"
@@ -22,7 +22,7 @@
           >
             Blog <span class="lock-icon">🔒</span>
           </span>
-        </ng-template>
+        </ng-template> -->
       </div>
       <div class="nav-right">
         <ng-container *ngIf="!isLoggedIn; else userMenu">
