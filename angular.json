@@ -34,7 +34,7 @@
               "src/styles.css"
             ],
             "scripts": [],
-            "baseHref": "/expert-giggle/"
+            "baseHref": "/"
           },
           "configurations": {
             "production": {
