@@ -1,5 +1,6 @@
 body {
-  background: #fff;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
 }
 
 /* Main layout container */
@@ -20,11 +21,33 @@ body {
   max-width: 1400px;
   width: 96vw;
   margin: 2.5em auto 2em auto;
-  padding: 0 2vw;
-  background: none;
-  border-radius: 0;
-  box-shadow: none;
+  padding: 3rem 2vw;
+  background: linear-gradient(135deg, #fff 0%, #f8f6f3 100%);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
   text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-author::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #B62D27, #d7263d);
+  border-radius: 20px 20px 0 0;
+  z-index: 1;
+}
+
+.about-author:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 }
 
 .about-author > .about-content {
@@ -37,6 +60,8 @@ body {
   box-shadow: none;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 2;
 }
 
 .about-author h1,
@@ -45,16 +70,24 @@ body {
   font-size: 2.3rem;
   margin-bottom: 1.2em;
   letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .author-photo {
   width: 220px;
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
   flex-shrink: 0;
   margin: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: float 6s ease-in-out infinite;
+}
+
+.author-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
 .about-content p {
@@ -63,19 +96,45 @@ body {
   line-height: 1.7;
   margin-bottom: 1.2em;
   text-align: left;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-/* Books authored section - Red Theme */
+/* Books authored section - Red Theme with Enhanced Depth */
 .books-authored {
   margin: 2em auto 0 auto;
   max-width: 1020px;
   padding: 2em 1.5em 1.5em 1.5em;
   text-align: left;
   position: relative;
-  background: #B62D27;
-  border-radius: 18px;
-  box-shadow: 0 8px 36px rgba(182, 45, 39, 0.25);
+  background: linear-gradient(135deg, #B62D27 0%, #d7263d 100%);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(182, 45, 39, 0.3);
   border: 1px solid rgba(182, 45, 39, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.books-authored::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  background-size: 200% 200%;
+  animation: shimmer 4s infinite;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% -200%; }
+  100% { background-position: 200% 200%; }
+}
+
+.books-authored:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(182, 45, 39, 0.4);
 }
 
 .books-authored h2 {
@@ -83,70 +142,98 @@ body {
   font-size: 2rem;
   margin-bottom: 1.2em;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 .books-list {
   display: flex;
   flex-direction: column;
   gap: 2em;
+  position: relative;
+  z-index: 2;
 }
 
 .book-item {
   display: flex;
   align-items: flex-start;
   gap: 1.5em;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 14px;
-  box-shadow: 0 4px 20px rgba(182, 45, 39, 0.15);
-  padding: 1.2em 1em;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 246, 243, 0.95) 100%);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(182, 45, 39, 0.2);
+  padding: 1.5em 1.2em;
   margin-bottom: 1.5em;
   transition: all 0.3s ease;
-  border: 1px solid rgba(182, 45, 39, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.book-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(182, 45, 39, 0.3), transparent);
+  z-index: 1;
 }
 
 .book-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(182, 45, 39, 0.2);
-  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(182, 45, 39, 0.25);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(248, 246, 243, 1) 100%);
 }
 
 .book-thumb {
   width: 90px;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(182, 45, 39, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(182, 45, 39, 0.2);
   flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: float 8s ease-in-out infinite;
+}
+
+.book-thumb:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 28px rgba(182, 45, 39, 0.3);
 }
 
 .book-item h3 {
   margin: 0 0 0.5em 0;
   color: #2d3436;
   font-size: 1.2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .book-item p {
   margin: 0 0 1em 0;
   color: #636e72;
   line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .buy-btn {
   display: inline-block;
-  background: #B62D27;
+  background: linear-gradient(135deg, #B62D27 0%, #d7263d 100%);
   color: #fff;
   font-weight: bold;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 1em;
-  padding: 0.7em 1.5em;
+  padding: 0.8em 1.5em;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(182, 45, 39, 0.2);
+  box-shadow: 0 6px 16px rgba(182, 45, 39, 0.3);
   cursor: pointer;
-  min-width: 100px;
+  min-width: 120px;
   text-align: center;
   position: relative;
   overflow: hidden;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .buy-btn::before {
@@ -166,9 +253,15 @@ body {
 
 .buy-btn:hover,
 .buy-btn:focus {
-  background: #a02020;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(182, 45, 39, 0.3);
+  background: linear-gradient(135deg, #a02020 0%, #B62D27 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(182, 45, 39, 0.4);
+}
+
+/* Add floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
 }
 
 /* Tablet styles (768px - 1023px) */
@@ -181,6 +274,8 @@ body {
     width: 95vw;
     gap: 36px;
     margin: 2em auto 1.5em auto;
+    padding: 2.5rem 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   }
   
   .about-author h1,
@@ -199,15 +294,24 @@ body {
   .books-authored {
     max-width: 95vw;
     padding: 1.5em 1.2em;
+    box-shadow: 0 8px 32px rgba(182, 45, 39, 0.25);
   }
   
   .books-authored h2 {
     font-size: 1.8rem;
   }
+  
+  .book-item {
+    box-shadow: 0 6px 20px rgba(182, 45, 39, 0.15);
+  }
 }
 
 /* Mobile styles (768px and below) */
 @media (max-width: 768px) {
+  body {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+  
   .about-layout {
     padding: 0 10px;
   }
@@ -219,7 +323,8 @@ body {
     text-align: center;
     width: 100%;
     margin: 1.5em auto;
-    padding: 0 1em;
+    padding: 2rem 1em;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
   }
   
   .about-content {
@@ -248,7 +353,8 @@ body {
   .books-authored {
     margin: 1.5em auto 0 auto;
     padding: 1.5em 1em;
-    border-radius: 12px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(182, 45, 39, 0.2);
   }
   
   .books-authored h2 {
@@ -266,6 +372,7 @@ body {
     text-align: center;
     padding: 1.5em 1em;
     gap: 1em;
+    box-shadow: 0 6px 16px rgba(182, 45, 39, 0.15);
   }
   
   .book-thumb {
@@ -288,6 +395,7 @@ body {
     max-width: 200px;
     padding: 0.8em 1em;
     font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(182, 45, 39, 0.2);
   }
 }
 
@@ -299,7 +407,8 @@ body {
   
   .about-author {
     margin: 1em auto;
-    padding: 0 0.5em;
+    padding: 1.5rem 0.5em;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   }
   
   .about-author h1,
@@ -317,7 +426,8 @@ body {
   
   .books-authored {
     padding: 1em 0.8em;
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(182, 45, 39, 0.18);
   }
   
   .books-authored h2 {
@@ -326,6 +436,7 @@ body {
   
   .book-item {
     padding: 1.2em 0.8em;
+    box-shadow: 0 4px 12px rgba(182, 45, 39, 0.12);
   }
   
   .book-thumb {
@@ -343,6 +454,7 @@ body {
   .buy-btn {
     padding: 0.7em 1em;
     font-size: 0.9rem;
+    box-shadow: 0 3px 8px rgba(182, 45, 39, 0.15);
   }
 }
 
@@ -376,29 +488,38 @@ body {
 
 /* Focus styles for accessibility */
 .buy-btn:focus {
-  outline: 2px solid #B62D27;
+  outline: 2px solid #fff;
   outline-offset: 2px;
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
+  body {
+    background: #f0f0f0;
+  }
+  
+  .about-author {
+    background: #fff;
+    border: 2px solid #000;
+  }
+  
   .about-author h1,
   .about-content h1 {
     color: #000;
   }
   
+  .books-authored {
+    background: #000;
+    border: 2px solid #fff;
+  }
+  
   .books-authored h2 {
-    color: #000;
+    color: #fff;
   }
   
   .about-content p,
   .book-item p {
     color: #000;
-  }
-  
-  .books-authored {
-    background: #f0f0f0;
-    border: 2px solid #000;
   }
   
   .book-item {
@@ -409,29 +530,46 @@ body {
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+  .about-author,
+  .books-authored,
   .book-item,
-  .buy-btn {
+  .buy-btn,
+  .author-photo,
+  .book-thumb {
     transition: none;
+    animation: none;
   }
   
-  .buy-btn:hover {
+  .about-author:hover,
+  .books-authored:hover,
+  .book-item:hover,
+  .buy-btn:hover,
+  .author-photo:hover,
+  .book-thumb:hover {
     transform: none;
   }
   
+  .books-authored::before,
   .buy-btn::before {
+    animation: none;
     display: none;
   }
 }
 
 /* Print styles */
 @media print {
-  .buy-btn {
-    display: none;
+  body {
+    background: white;
   }
   
+  .about-author,
   .books-authored {
-    background: #f0f0f0;
+    background: white;
     box-shadow: none;
+  }
+  
+  .buy-btn {
+    display: none;
   }
   
   .book-item {
