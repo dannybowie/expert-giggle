@@ -3,51 +3,82 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: url("^assets/IMG_0426221.webp") no-repeat center center;
-  background-size: cover;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   padding: 80px 60px;
-  color: white;
-  height: 400px;
+  color: #333;
+  min-height: 400px;
   position: relative;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border-radius: 0 0 12px 12px;
   overflow: hidden;
 }
 
-/* Add overlay for better text readability */
-.hero::before {
+/* Hero image on the left */
+.hero-image {
+  flex: 1;
+  max-width: 450px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+}
+
+/* Hero content on the right */
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(135deg, #fff 0%, #f8f6f3 100%);
+  padding: 3rem;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  margin-left: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-content::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  height: 4px;
+  background: linear-gradient(90deg, #B62D27, #d7263d);
+  border-radius: 16px 16px 0 0;
   z-index: 1;
 }
 
-.hero-content {
-  max-width: 600px;
-  position: relative;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 2rem;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+.hero-content:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 }
 
 .hero-content h1 {
   font-size: 48px;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  color: #333;
 }
 
 .hero-content p {
   font-size: 18px;
   margin-bottom: 30px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  color: #555;
+  line-height: 1.6;
 }
 
 .btn-red,
@@ -291,19 +322,29 @@
   animation: float 4s ease-in-out infinite;
 }
 
+.hero-image img {
+  animation: float 8s ease-in-out infinite;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .hero {
     padding: 40px 20px;
-    height: 300px;
-    text-align: center;
+    min-height: 300px;
     flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hero-image {
+    max-width: 300px;
+    margin-bottom: 30px;
   }
   
   .hero-content {
-    padding: 1.5rem;
+    padding: 2rem;
+    margin-left: 0;
+    max-width: 100%;
   }
   
   .hero-content h1 {
@@ -356,12 +397,16 @@
 @media (max-width: 480px) {
   .hero {
     padding: 20px 15px;
-    height: 250px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    min-height: 250px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hero-image {
+    max-width: 250px;
   }
   
   .hero-content {
-    padding: 1rem;
+    padding: 1.5rem;
   }
   
   .hero-content h1 {
@@ -384,15 +429,20 @@
 /* Focus styles for accessibility */
 .btn-red:focus,
 .btn-dark:focus {
-  outline: 2px solid #fff;
+  outline: 2px solid #B62D27;
   outline-offset: 2px;
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
+  .hero {
+    background: #f0f0f0;
+    border: 1px solid #000;
+  }
+  
   .hero-content {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid #fff;
+    background: #fff;
+    border: 2px solid #000;
   }
   
   .section,
@@ -410,6 +460,7 @@
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .hero-content,
+  .hero-image img,
   .section,
   .author-bio,
   .invite-section,
@@ -420,7 +471,8 @@
   }
   
   .book-cover,
-  .author-bio img {
+  .author-bio img,
+  .hero-image img {
     animation: none;
   }
   
@@ -428,6 +480,8 @@
     animation: none;
   }
   
+  .hero-content:hover,
+  .hero-image img:hover,
   .section:hover,
   .author-bio:hover,
   .invite-section:hover,
