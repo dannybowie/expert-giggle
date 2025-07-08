@@ -1,7 +1,7 @@
 <div class="modal-backdrop" (click)="onClose()"></div>
 <div class="modal">
   <h2>Register</h2>
-  <form (ngSubmit)="registerWithEmail(email, password)">
+  <form (ngSubmit)="registerWithEmail()">
     <label>
       First Name:
       <input type="text" [(ngModel)]="firstName" name="firstName" required />
