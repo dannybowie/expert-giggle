@@ -3,6 +3,7 @@ import { NgIf } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Auth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
 import { Firestore, collection, query, where, getDocs } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +20,12 @@ export class LoginComponent {
   password = '';
   error = '';
   username = '';
+  resetEmailSent = false;
 
-  constructor(private auth: Auth, private firestore: Firestore) {}
+  constructor(
+    public afAuth: AngularFireAuth,
+    private auth: Auth, 
+    private firestore: Firestore) {}
 
   getFriendlyError(error: any): string {
     if (!error || !error.code) return 'An unknown error occurred. Please try again.';
@@ -81,6 +86,38 @@ export class LoginComponent {
     } catch (err: any) {
       this.error = this.getFriendlyError(err);
     }
+  }
+
+  forgotPassword() {
+    if (!this.email) {
+      this.error = 'Please enter your email address first';
+      return;
+    }
+    
+    this.error = '';  // Empty string instead of null
+    this.resetEmailSent = false;
+    
+    this.afAuth.sendPasswordResetEmail(this.email)
+      .then(() => {
+        this.resetEmailSent = true;
+        // Reset after 5 seconds
+        setTimeout(() => {
+          this.resetEmailSent = false;
+        }, 5000);
+      })
+      .catch(error => {
+        switch(error.code) {
+          case 'auth/user-not-found':
+            this.error = 'No user found with this email address';
+            break;
+          case 'auth/invalid-email':
+            this.error = 'Please enter a valid email address';
+            break;
+          default:
+            this.error = 'Error sending password reset email. Please try again.';
+            console.error('Password reset error:', error);
+        }
+      });
   }
 
   onClose() {

@@ -122,6 +122,33 @@ a {
   cursor: pointer;
 }
 
+.forgot-password {
+  text-align: right;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.forgot-password a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: var(--transition-default);
+}
+
+.forgot-password a:hover {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: var(--border-radius-sm);
+  padding: 10px;
+  margin-top: 15px;
+  text-align: center;
+}
+
 /* Tablet styles (768px - 1023px) */
 @media (max-width: 1023px) {
   .modal {
