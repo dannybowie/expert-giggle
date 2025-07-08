@@ -114,3 +114,32 @@ a {
   text-decoration: underline;
   cursor: pointer; /* Ensure pointer on hover */
 }
+@media (max-width: 600px) {
+  .modal {
+    min-width: unset;
+    width: 98vw;
+    max-width: 98vw;
+    padding: 1.2em 0.5em;
+    border-radius: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1em;
+  }
+  form {
+    gap: 0.7em;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    font-size: 1em;
+    padding: 0.6em;
+  }
+  button[type="submit"], .google-btn, .close-btn {
+    font-size: 1em;
+    padding: 0.6em;
+  }
+}

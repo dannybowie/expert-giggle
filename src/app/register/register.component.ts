@@ -1,7 +1,7 @@
-import { Component, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Auth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, UserCredential, user } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, updateProfile, UserCredential } from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 
 @Component({
@@ -26,22 +26,18 @@ export class RegisterComponent {
   loading = false;
   success = false;
 
-  auth = inject(Auth);
-
-  constructor(private firestore: Firestore) {
-    user(this.auth).subscribe(currentUser => {
-      this.isLoggedIn = !!currentUser;
-      // Optionally store user info
-    });
-  }
+  constructor(
+    private auth: Auth,
+    private firestore: Firestore
+  ) {}
 
   ngOnInit() {}
 
-  async registerWithEmail(email: string, password: string) {
+  async registerWithEmail() {
     this.error = '';
     this.success = false;
     this.loading = true;
-    if (!email || !password || password.length < 6) {
+    if (!this.email || !this.password || this.password.length < 6) {
       this.error = 'Please enter a valid email and a password with at least 6 characters.';
       this.loading = false;
       return;
@@ -57,7 +53,11 @@ export class RegisterComponent {
       return;
     }
     try {
-      const cred = await createUserWithEmailAndPassword(this.auth, email, password);
+      const cred = await createUserWithEmailAndPassword(this.auth, this.email, this.password);
+      // Set displayName in Firebase Auth profile
+      await updateProfile(cred.user, {
+        displayName: `${this.firstName} ${this.lastName}`
+      });
       // Save user info to Firestore
       await setDoc(doc(this.firestore, 'users', cred.user.uid), {
         firstName: this.firstName,
@@ -65,10 +65,12 @@ export class RegisterComponent {
         email: this.email,
         createdAt: new Date(),
         isMember: false,
-        canEdit: false // <-- Add this line
+        canEdit: false
       });
       this.success = true;
-      // Optionally reset form fields here
+      this.registered.emit();
+      // Optionally reset fields
+      this.firstName = this.lastName = this.email = this.password = this.confirmPassword = '';
     } catch (error: any) {
       this.error = error.message || 'Registration failed.';
     } finally {
@@ -83,10 +85,14 @@ export class RegisterComponent {
       // Add user to Firestore (if new)
       await setDoc(doc(this.firestore, 'users', cred.user.uid), {
         email: cred.user.email,
+        firstName: cred.user.displayName?.split(' ')[0] || '',
+        lastName: cred.user.displayName?.split(' ').slice(1).join(' ') || '',
         createdAt: new Date(),
         isMember: false,
-        canEdit: false // <-- Add this line
+        canEdit: false
       }, { merge: true });
+      this.success = true;
+      this.registered.emit();
       this.close.emit();
     } catch (err: any) {
       this.error = err.message;
