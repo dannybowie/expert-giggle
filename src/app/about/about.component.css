@@ -5,7 +5,7 @@ body {
 
 /* Main layout container */
 .about-layout {
-  max-width: 1200px;
+  max-width: var(--container-width);
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
@@ -22,15 +22,15 @@ body {
   width: 96vw;
   margin: 2.5em auto 2em auto;
   padding: 3rem 2vw;
-  background: linear-gradient(135deg, #fff 0%, #f8f6f3 100%);
-  border-radius: 20px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  background: var(--gradient-card);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
   border: 1px solid rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   text-align: left;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition-default);
 }
 
 .about-author::before {
@@ -40,14 +40,14 @@ body {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #B62D27, #d7263d);
-  border-radius: 20px 20px 0 0;
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
   z-index: 1;
 }
 
 .about-author:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-xl);
 }
 
 .about-author > .about-content {
@@ -66,7 +66,7 @@ body {
 
 .about-author h1,
 .about-content h1 {
-  color: #d7263d;
+  color: var(--color-secondary);
   font-size: 2.3rem;
   margin-bottom: 1.2em;
   letter-spacing: 1px;
@@ -77,21 +77,21 @@ body {
   width: 220px;
   max-width: 100%;
   height: auto;
-  border-radius: 16px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
   flex-shrink: 0;
   margin: 0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition-default);
   animation: float 6s ease-in-out infinite;
 }
 
 .author-photo:hover {
   transform: scale(1.05);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-xl);
 }
 
 .about-content p {
-  color: #333;
+  color: var(--color-text);
   font-size: 1.13rem;
   line-height: 1.7;
   margin-bottom: 1.2em;
@@ -106,11 +106,11 @@ body {
   padding: 2em 1.5em 1.5em 1.5em;
   text-align: left;
   position: relative;
-  background: linear-gradient(135deg, #B62D27 0%, #d7263d 100%);
-  border-radius: 20px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border-radius: var(--border-radius-md);
   box-shadow: 0 12px 40px rgba(182, 45, 39, 0.3);
   border: 1px solid rgba(182, 45, 39, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition-default);
   overflow: hidden;
 }
 
@@ -125,11 +125,6 @@ body {
   background-size: 200% 200%;
   animation: shimmer 4s infinite;
   z-index: 1;
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% -200%; }
-  100% { background-position: 200% 200%; }
 }
 
 .books-authored:hover {
@@ -154,16 +149,17 @@ body {
   z-index: 2;
 }
 
+/* Book item cards */
 .book-item {
   display: flex;
   align-items: flex-start;
   gap: 1.5em;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 246, 243, 0.95) 100%);
-  border-radius: 16px;
+  border-radius: var(--border-radius-md);
   box-shadow: 0 8px 24px rgba(182, 45, 39, 0.2);
   padding: 1.5em 1.2em;
   margin-bottom: 1.5em;
-  transition: all 0.3s ease;
+  transition: var(--transition-default);
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   position: relative;
@@ -190,10 +186,10 @@ body {
 .book-thumb {
   width: 90px;
   height: auto;
-  border-radius: 12px;
+  border-radius: var(--border-radius-sm);
   box-shadow: 0 8px 20px rgba(182, 45, 39, 0.2);
   flex-shrink: 0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition-default);
   animation: float 8s ease-in-out infinite;
 }
 
@@ -216,17 +212,18 @@ body {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+/* Button styles */
 .buy-btn {
   display: inline-block;
-  background: linear-gradient(135deg, #B62D27 0%, #d7263d 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: #fff;
   font-weight: bold;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius-sm);
   font-size: 1em;
   padding: 0.8em 1.5em;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: var(--transition-default);
   box-shadow: 0 6px 16px rgba(182, 45, 39, 0.3);
   cursor: pointer;
   min-width: 120px;
@@ -253,17 +250,12 @@ body {
 
 .buy-btn:hover,
 .buy-btn:focus {
-  background: linear-gradient(135deg, #a02020 0%, #B62D27 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(182, 45, 39, 0.4);
 }
 
-/* Add floating animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-}
-
+/* Responsive styles */
 /* Tablet styles (768px - 1023px) */
 @media (max-width: 1023px) {
   .about-layout {
@@ -275,7 +267,7 @@ body {
     gap: 36px;
     margin: 2em auto 1.5em auto;
     padding: 2.5rem 1.5rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadow-md);
   }
   
   .about-author h1,
@@ -308,10 +300,6 @@ body {
 
 /* Mobile styles (768px and below) */
 @media (max-width: 768px) {
-  body {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  }
-  
   .about-layout {
     padding: 0 10px;
   }
@@ -324,7 +312,7 @@ body {
     width: 100%;
     margin: 1.5em auto;
     padding: 2rem 1em;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
   }
   
   .about-content {
@@ -353,7 +341,7 @@ body {
   .books-authored {
     margin: 1.5em auto 0 auto;
     padding: 1.5em 1em;
-    border-radius: 16px;
+    border-radius: var(--border-radius-md);
     box-shadow: 0 8px 24px rgba(182, 45, 39, 0.2);
   }
   
@@ -426,7 +414,7 @@ body {
   
   .books-authored {
     padding: 1em 0.8em;
-    border-radius: 12px;
+    border-radius: var(--border-radius-sm);
     box-shadow: 0 6px 20px rgba(182, 45, 39, 0.18);
   }
   
@@ -486,7 +474,7 @@ body {
   }
 }
 
-/* Focus styles for accessibility */
+/* Accessibility enhancements */
 .buy-btn:focus {
   outline: 2px solid #fff;
   outline-offset: 2px;
@@ -494,10 +482,6 @@ body {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  body {
-    background: #f0f0f0;
-  }
-  
   .about-author {
     background: #fff;
     border: 2px solid #000;
@@ -558,10 +542,6 @@ body {
 
 /* Print styles */
 @media print {
-  body {
-    background: white;
-  }
-  
   .about-author,
   .books-authored {
     background: white;

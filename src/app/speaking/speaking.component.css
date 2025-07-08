@@ -1,143 +1,125 @@
-body {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  min-height: 100vh;
+/* Remove body style - should be in global CSS */
+
+/* Main page layout container */
+.speaking-container {
+  max-width: var(--container-width);
+  margin: 2em auto;
+  padding: 0 20px;
 }
 
-.speaking-hero {
+/* Three-area grid layout */
+.speaking-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+    "image form"
+    "text form";
+  gap: 2.5em;
+  width: 100%;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* Image area - top left */
+.speaker-image-container {
+  grid-area: image;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 60px 20px 40px 20px;
-  background: linear-gradient(135deg, #fff 0%, #f8f6f3 100%);
-  border-radius: 20px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  padding-bottom: 1.5em;
+}
+
+.speaker-image {
+  width: 100%;
+  max-width: 60%;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-default);
+  animation: float 8s ease-in-out infinite;
+}
+
+.speaker-image:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Text area - bottom left */
+.speaking-info {
+  grid-area: text;
+  background: var(--gradient-card);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
   border: 1px solid rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
-  max-width: 1200px;
-  margin: 2em auto;
-  text-align: center;
+  padding: 2.5em;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition-default);
 }
 
-.speaking-hero::before {
+.speaking-info::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #B62D27, #d7263d);
-  border-radius: 20px 20px 0 0;
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
   z-index: 1;
 }
 
-.speaking-hero:hover {
+.speaking-info:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
-}
-
-.speaker-image {
-  max-width: 400px; /* Increased from 220px */
-  border-radius: 16px;
-  margin-bottom: 2em;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: float 6s ease-in-out infinite;
-  position: relative;
-  z-index: 2;
-}
-
-.speaker-image:hover {
-  transform: scale(1.05);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
-}
-
-.speaking-content-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5em;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  text-align: left;
-  position: relative;
-  z-index: 2;
-}
-
-.speaking-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding-right: 1em;
+  box-shadow: var(--shadow-xl);
 }
 
 .speaking-info h1 {
-  color: #d7263d;
-  font-size: 2.2rem;
+  color: var(--color-secondary);
+  font-size: 1.8rem;
   margin-bottom: 1em;
   letter-spacing: 1px;
-  text-align: left;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
 }
 
 .speaking-info p {
-  color: #333;
-  font-size: 1.15rem;
+  color: var(--color-text);
+  font-size: 1.1rem;
   margin-bottom: 1.5em;
   line-height: 1.6;
-  max-width: 600px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 2;
 }
 
-@media (max-width: 900px) {
-  .speaking-content-grid {
-    grid-template-columns: 1fr;
-    gap: 2em;
-    text-align: center;
-  }
-  .speaking-info {
-    align-items: center;
-    padding-right: 0;
-  }
-  
-  .speaking-hero {
-    margin: 1.5em auto;
-    padding: 40px 20px 30px 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-  }
-  
-  .speaker-image {
-    max-width: 350px; /* Increase this if you want it bigger on tablets */
-  }
+.speaking-info ul {
+  margin-bottom: 1.5em;
+  padding-left: 1.2em;
 }
 
-@media (max-width: 768px) {
-  .speaker-image {
-    max-width: 300px; /* Increase this for mobile/tablet */
-  }
+.speaking-info li {
+  color: var(--color-text);
+  font-size: 1.1rem;
+  margin-bottom: 0.5em;
+  line-height: 1.5;
 }
 
-@media (max-width: 480px) {
-  .speaker-image {
-    max-width: 220px; /* Increase this for small screens */
-  }
-}
-
+/* Form area - full height on right */
 .booking-form-section {
-  background: linear-gradient(135deg, #fff 0%, #f8f6f3 100%);
-  border-radius: 20px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  grid-area: form;
+  background: var(--gradient-card);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
   border: 1px solid rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
-  max-width: 600px;
-  margin: 2em auto 3em auto;
-  padding: 2.5em 2.5em 2em 2.5em;
+  padding: 2.5em;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition-default);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .booking-form-section::before {
@@ -147,26 +129,26 @@ body {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #B62D27, #d7263d);
-  border-radius: 20px 20px 0 0;
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
   z-index: 1;
 }
 
 .booking-form-section:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-xl);
 }
 
 .booking-form-section h2 {
   text-align: center;
-  color: #d7263d;
+  color: var(--color-secondary);
   margin-bottom: 1.5em;
   font-size: 1.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 2;
 }
 
+/* Form elements */
 form {
   display: flex;
   flex-direction: column;
@@ -179,7 +161,7 @@ label {
   display: flex;
   flex-direction: column;
   font-weight: 600;
-  color: #222;
+  color: var(--color-dark);
   margin-bottom: 0.5em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
@@ -189,35 +171,35 @@ input[type='email'],
 textarea {
   padding: 0.75em;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: var(--border-radius-sm);
   font-size: 1em;
   margin-top: 0.5em;
   resize: vertical;
-  background: linear-gradient(135deg, #f8f6f3 0%, #fff 100%);
+  background: linear-gradient(135deg, var(--color-off-white) 0%, var(--color-white) 100%);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  transition: var(--transition-default);
 }
 
 input[type='text']:focus,
 input[type='email']:focus,
 textarea:focus {
   outline: none;
-  border-color: #B62D27;
+  border-color: var(--color-primary);
   box-shadow: 0 4px 12px rgba(182, 45, 39, 0.15);
-  background: #fff;
+  background: var(--color-white);
 }
 
 button[type='submit'] {
-  background: linear-gradient(135deg, #B62D27 0%, #d7263d 100%);
-  color: #fff;
+  background: var(--gradient-primary);
+  color: var(--color-white);
   font-weight: bold;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius-sm);
   font-size: 1em;
   padding: 0.75em;
   margin-top: 1em;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition-default);
   box-shadow: 0 6px 16px rgba(182, 45, 39, 0.3);
   position: relative;
   overflow: hidden;
@@ -240,7 +222,7 @@ button[type='submit']:hover::before {
 }
 
 button[type='submit']:hover:enabled {
-  background: linear-gradient(135deg, #a02020 0%, #B62D27 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(182, 45, 39, 0.4);
 }
@@ -249,10 +231,11 @@ button[type='submit']:active {
   transform: translateY(0);
 }
 
+/* Form messages */
 .success-message {
   color: #388e3c;
   background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
-  border-radius: 12px;
+  border-radius: var(--border-radius-md);
   padding: 1.2em;
   margin-top: 1.5em;
   text-align: center;
@@ -275,9 +258,9 @@ button[type='submit']:active {
 }
 
 .error-message {
-  color: #d7263d;
+  color: var(--color-secondary);
   background: linear-gradient(135deg, #fdeaea 0%, #fff5f5 100%);
-  border-radius: 12px;
+  border-radius: var(--border-radius-md);
   padding: 1.2em;
   margin-top: 1.5em;
   text-align: center;
@@ -295,7 +278,7 @@ button[type='submit']:active {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #d7263d, #B62D27);
+  background: var(--gradient-primary);
   z-index: 1;
 }
 
@@ -305,7 +288,7 @@ button[type='submit']:active {
   filter: grayscale(0.5);
   background: linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%) !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
-  transition: all 0.3s ease;
+  transition: var(--transition-default);
 }
 
 .form-disabled input,
@@ -329,113 +312,79 @@ button[type='submit']:active {
   50% { transform: translateY(-6px); }
 }
 
-/* Mobile responsive enhancements */
-@media (max-width: 768px) {
-  body {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+/* Responsive styles - Tablet */
+@media (max-width: 900px) {
+  .speaking-content-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "image"
+      "text"
+      "form";
+    gap: 2em;
   }
   
-  .speaking-hero {
-    margin: 1em auto;
-    padding: 30px 15px 25px 15px;
-    border-radius: 16px;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  .speaker-image-container {
+    padding-bottom: 0;
   }
   
   .speaker-image {
-    max-width: 300px; /* Increase this for mobile/tablet */
+    max-width: 60%;
+  }
+}
+
+/* Responsive styles - Mobile */
+@media (max-width: 768px) {
+  .speaker-image {
+    max-width: 70%;
+  }
+  
+  .speaking-info {
+    padding: 2em;
   }
   
   .speaking-info h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
   
-  .speaking-info p {
+  .speaking-info p, .speaking-info li {
     font-size: 1rem;
   }
   
   .booking-form-section {
-    margin: 1.5em auto 2em auto;
-    padding: 2em 1.5em 1.5em 1.5em;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  }
-  
-  .booking-form-section h2 {
-    font-size: 1.3rem;
-  }
-  
-  input[type='text'],
-  input[type='email'],
-  textarea {
-    padding: 0.6em;
-    font-size: 0.95rem;
-  }
-  
-  button[type='submit'] {
-    padding: 0.8em;
-    font-size: 0.95rem;
-    box-shadow: 0 4px 12px rgba(182, 45, 39, 0.2);
+    padding: 2em;
   }
 }
 
 @media (max-width: 480px) {
-  .speaking-hero {
-    padding: 25px 10px 20px 10px;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  .speaking-container {
+    padding: 0 10px;
   }
   
   .speaker-image {
-    max-width: 220px; /* Increase this for small screens */
+    max-width: 80%;
+  }
+  
+  .speaking-info, .booking-form-section {
+    padding: 1.5em;
   }
   
   .speaking-info h1 {
-    font-size: 1.5rem;
-  }
-  
-  .speaking-info p {
-    font-size: 0.95rem;
-  }
-  
-  .booking-form-section {
-    padding: 1.5em 1em 1.2em 1em;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .booking-form-section h2 {
-    font-size: 1.2rem;
-  }
-  
-  input[type='text'],
-  input[type='email'],
-  textarea {
-    padding: 0.5em;
-    font-size: 0.9rem;
-  }
-  
-  button[type='submit'] {
-    padding: 0.7em;
-    font-size: 0.9rem;
+    font-size: 1.4rem;
   }
 }
 
+/* Accessibility Features */
 /* Focus styles for accessibility */
 button[type='submit']:focus {
-  outline: 2px solid #B62D27;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  body {
-    background: #f0f0f0;
-  }
-  
   .speaking-hero,
   .booking-form-section {
-    background: #fff;
+    background: var(--color-white);
     border: 2px solid #000;
   }
   
@@ -452,14 +401,14 @@ button[type='submit']:focus {
   input[type='text'],
   input[type='email'],
   textarea {
-    background: #fff;
+    background: var(--color-white);
     border: 2px solid #000;
   }
   
   button[type='submit'] {
     background: #000;
-    color: #fff;
-    border: 2px solid #fff;
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
   }
   
   .success-message {
@@ -469,7 +418,7 @@ button[type='submit']:focus {
   
   .error-message {
     background: #fdeaea;
-    border: 2px solid #d7263d;
+    border: 2px solid var(--color-secondary);
   }
 }
 
@@ -500,13 +449,9 @@ button[type='submit']:focus {
 
 /* Print styles */
 @media print {
-  body {
-    background: white;
-  }
-  
   .speaking-hero,
   .booking-form-section {
-    background: white;
+    background: var(--color-white);
     box-shadow: none;
   }
   

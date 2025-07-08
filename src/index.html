@@ -4,8 +4,20 @@
   <meta charset="utf-8">
   <title>BeBe Bowie</title>
   <base href="/">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  
+  <script>
+    // Check for redirect from 404 page
+    (function() {
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect != location.href) {
+        history.replaceState(null, null, redirect.replace(location.origin, ''));
+      }
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>
