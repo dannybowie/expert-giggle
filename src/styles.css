@@ -1,11 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --red: #c73228;
-  --dark: #1a1a1a;
-  --light: #fdfdfd;
-  --gray: #f0f0f0;
+  /* Color palette */
+  --color-primary: #B62D27;
+  --color-primary-dark: #a02020;
+  --color-secondary: #d7263d;
+  --color-dark: #222;
+  --color-darker: #111;
+  --color-text: #333;
+  --color-text-light: #555;
+  --color-bg-light: #f8f9fa;
+  --color-bg-light-alt: #e9ecef;
+  --color-white: #fff;
+  --color-off-white: #f8f6f3;
+  
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.2);
+  
+  /* Common gradients */
+  --gradient-bg: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  --gradient-card: linear-gradient(135deg, #fff 0%, #f8f6f3 100%);
+  --gradient-primary: linear-gradient(90deg, #B62D27, #d7263d);
+  
+  /* Sizes */
+  --container-width: 1200px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 25px;
+  
+  /* Transitions */
+  --transition-default: all 0.3s ease;
 }
 
+/* Your existing global styles... */
 * {
   margin: 0;
   padding: 0;
@@ -17,4 +46,4 @@ body {
   line-height: 1.6;
   background-color: #f8f6f3;
   color: #222;
-} 
+}
