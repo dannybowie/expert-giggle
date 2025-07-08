@@ -13,37 +13,6 @@
   --text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Shared styles */
-.card-style {
-  background: var(--white-gradient);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-light);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.card-style::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--red-gradient);
-  z-index: 1;
-}
-
-.card-style:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-medium);
-}
-
-.float-animation {
-  animation: float 6s ease-in-out infinite;
-}
-
 /* Hero Section */
 .hero {
   display: flex;
@@ -53,6 +22,7 @@
   padding: 80px 60px;
   color: #333;
   min-height: 400px;
+  position: relative;
   box-shadow: var(--shadow-light);
   border-radius: 0 0 12px 12px;
   overflow: hidden;
@@ -82,10 +52,33 @@
 .hero-content {
   flex: 0 0 60%;
   max-width: 80%;
+  position: relative;
   z-index: 2;
-  margin-left: 40px;
+  background: var(--white-gradient);
   padding: 3rem;
+  border-radius: var(--border-radius);
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-medium);
+  margin-left: 40px;
+  transition: var(--transition);
+}
+
+.hero-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--red-gradient);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  z-index: 1;
+}
+
+.hero-content:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-heavy);
 }
 
 .hero-content h1 {
@@ -140,13 +133,14 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Main content */
+/* Main content layout */
 .main-content {
   display: flex;
   justify-content: space-between;
   padding: 60px;
   gap: 60px;
   background: var(--light-gradient);
+  position: relative;
 }
 
 .left-column {
@@ -155,7 +149,31 @@
 
 .author-bio {
   flex: 1;
+  background: var(--white-gradient);
   padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.author-bio::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--red-gradient);
+  z-index: 1;
+}
+
+.author-bio:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
 }
 
 .author-bio img {
@@ -184,11 +202,25 @@
   display: flex;
   align-items: flex-start;
   margin-bottom: 60px;
+  background: var(--white-gradient);
   padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 3px;
+  background: var(--red-gradient);
+  z-index: 1;
 }
 
 .section:hover {
@@ -202,6 +234,7 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   transition: var(--transition);
+  animation: float 6s ease-in-out infinite;
 }
 
 .book-cover:hover {
@@ -272,18 +305,18 @@
   box-shadow: 0 12px 40px rgba(182, 45, 39, 0.4);
 }
 
-.invite-section h2, .invite-section p {
-  position: relative;
-  z-index: 2;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
 .invite-section h2 {
   margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 .invite-section p {
   margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 /* Animations */
@@ -297,7 +330,7 @@
   100% { background-position: 200% 200%; }
 }
 
-/* Social links */
+/* Button and social link styles */
 .button-group {
   margin-bottom: 20px;
 }
@@ -368,16 +401,7 @@
   transform: scale(1.1);
 }
 
-/* Apply shared styles */
-.hero-content, .author-bio, .section {
-  @extend .card-style;
-}
-
-.book-cover, .author-bio img {
-  @extend .float-animation;
-}
-
-/* Responsive Design */
+/* Responsive Design - Combined for efficiency */
 @media (max-width: 1024px) {
   .hero-image { flex: 0 0 40%; max-width: 350px; }
   .hero-content { flex: 0 0 55%; margin-left: 30px; padding: 2.5rem; }
@@ -429,12 +453,13 @@
   .social-link { width: 100%; max-width: 200px; justify-content: center; }
 }
 
-/* Accessibility */
+/* Focus styles for accessibility */
 .btn-red:focus, .btn-dark:focus {
   outline: 2px solid var(--primary-red);
   outline-offset: 2px;
 }
 
+/* High contrast and reduced motion support */
 @media (prefers-contrast: high) {
   .hero { background: #f0f0f0; border: 1px solid #000; }
   .hero-content { background: #fff; border: 2px solid #000; }
@@ -443,6 +468,19 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; animation: none !important; }
-  *:hover { transform: none !important; }
+  .hero-content, .hero-image img, .section, .author-bio, .invite-section, .book-cover, .btn-red, .btn-dark {
+    transition: none;
+  }
+  
+  .book-cover, .author-bio img, .hero-image img {
+    animation: none;
+  }
+  
+  .invite-section::before {
+    animation: none;
+  }
+  
+  .hero-content:hover, .hero-image img:hover, .section:hover, .author-bio:hover, .invite-section:hover, .book-cover:hover, .btn-red:hover, .btn-dark:hover {
+    transform: none;
+  }
 }
