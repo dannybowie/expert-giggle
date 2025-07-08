@@ -1,9 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Auth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from '@angular/fire/auth';
 import { Firestore, collection, query, where, getDocs } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-login',
@@ -23,9 +22,9 @@ export class LoginComponent {
   resetEmailSent = false;
 
   constructor(
-    public afAuth: AngularFireAuth,
     private auth: Auth, 
-    private firestore: Firestore) {}
+    private firestore: Firestore
+  ) {}
 
   getFriendlyError(error: any): string {
     if (!error || !error.code) return 'An unknown error occurred. Please try again.';
@@ -88,36 +87,34 @@ export class LoginComponent {
     }
   }
 
-  forgotPassword() {
+  async forgotPassword() {
     if (!this.email) {
       this.error = 'Please enter your email address first';
       return;
     }
     
-    this.error = '';  // Empty string instead of null
+    this.error = '';
     this.resetEmailSent = false;
-    
-    this.afAuth.sendPasswordResetEmail(this.email)
-      .then(() => {
-        this.resetEmailSent = true;
-        // Reset after 5 seconds
-        setTimeout(() => {
-          this.resetEmailSent = false;
-        }, 5000);
-      })
-      .catch(error => {
-        switch(error.code) {
-          case 'auth/user-not-found':
-            this.error = 'No user found with this email address';
-            break;
-          case 'auth/invalid-email':
-            this.error = 'Please enter a valid email address';
-            break;
-          default:
-            this.error = 'Error sending password reset email. Please try again.';
-            console.error('Password reset error:', error);
-        }
-      });
+
+    try {
+      await sendPasswordResetEmail(this.auth, this.email);
+      this.resetEmailSent = true;
+      setTimeout(() => {
+        this.resetEmailSent = false;
+      }, 5000);
+    } catch (error: any) {
+      switch(error.code) {
+        case 'auth/user-not-found':
+          this.error = 'No user found with this email address';
+          break;
+        case 'auth/invalid-email':
+          this.error = 'Please enter a valid email address';
+          break;
+        default:
+          this.error = 'Error sending password reset email. Please try again.';
+          console.error('Password reset error:', error);
+      }
+    }
   }
 
   onClose() {
