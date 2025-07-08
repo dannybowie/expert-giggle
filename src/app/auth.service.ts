@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Auth, onAuthStateChanged, User as FirebaseUser } from '@angular/fire/auth';
+import { Auth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail, User, signOut } from '@angular/fire/auth';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 export interface AppUser {
@@ -10,7 +10,8 @@ export interface AppUser {
   firstName?: string;
   lastName?: string;
   canEdit?: boolean;
-  isMember?: boolean; 
+  isMember?: boolean;
+  // Add more fields if needed
 }
 
 @Injectable({ providedIn: 'root' })
@@ -19,7 +20,7 @@ export class AuthService {
   private user$ = new BehaviorSubject<AppUser | null>(null);
 
   constructor(private auth: Auth, private firestore: Firestore, private router: Router) {
-    onAuthStateChanged(this.auth, async (user: FirebaseUser | null) => {
+    onAuthStateChanged(this.auth, async (user: User | null) => {
       this.loggedIn$.next(!!user);
       if (user) {
         // Fetch user profile from Firestore
@@ -37,19 +38,35 @@ export class AuthService {
     });
   }
 
-  isLoggedIn() {
+  isLoggedIn(): Observable<boolean> {
     return this.loggedIn$.asObservable();
   }
 
-  currentUser() {
+  currentUser(): Observable<AppUser | null> {
     return this.user$.asObservable();
   }
 
+  async login(email: string, password: string): Promise<void> {
+    await signInWithEmailAndPassword(this.auth, email, password);
+    // User state is handled by onAuthStateChanged
+  }
+
+  async loginWithGoogle(): Promise<void> {
+    await signInWithPopup(this.auth, new GoogleAuthProvider());
+  }
+
+  async sendPasswordReset(email: string): Promise<void> {
+    await sendPasswordResetEmail(this.auth, email);
+  }
+
+  async logout(): Promise<void> {
+    await signOut(this.auth);
+    this.router.navigate(['/home']);
+  }
+
   canActivate(): boolean {
-    // Check if user is logged in (adjust based on your auth logic)
     const user = this.user$.getValue();
     const isLoggedIn = !!user;
-    
     if (!isLoggedIn) {
       this.router.navigate(['/home']);
       return false;
