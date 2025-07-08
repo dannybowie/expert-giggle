@@ -13,10 +13,10 @@
   overflow: hidden;
 }
 
-/* Hero image on the left */
+/* Hero image on the left - reduced to 35% */
 .hero-image {
-  flex: 1;
-  max-width: 450px;
+  flex: 0 0 35%;
+  max-width: 400px;
   position: relative;
   z-index: 2;
 }
@@ -34,10 +34,10 @@
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
 }
 
-/* Hero content on the right */
+/* Hero content on the right - expanded to 60% */
 .hero-content {
-  flex: 1;
-  max-width: 600px;
+  flex: 0 0 60%;
+  max-width: 80%;
   position: relative;
   z-index: 2;
   background: linear-gradient(135deg, #fff 0%, #f8f6f3 100%);
@@ -326,6 +326,99 @@
   animation: float 8s ease-in-out infinite;
 }
 
+/* Button and social link styles */
+.button-group {
+  margin-bottom: 20px;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 246, 243, 0.9) 100%);
+  border-radius: 25px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.social-link:hover::before {
+  left: 100%;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(248, 246, 243, 1) 100%);
+}
+
+.social-link:first-child:hover {
+  color: #ff0050; /* TikTok brand color */
+}
+
+.social-link:last-child:hover {
+  color: #E4405F; /* Instagram brand color */
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.social-link:hover .social-icon {
+  transform: scale(1.1);
+}
+
+/* Tablet responsive (1024px and below) */
+@media (max-width: 1024px) {
+  .hero-image {
+    flex: 0 0 40%;
+    max-width: 350px;
+  }
+  
+  .hero-content {
+    flex: 0 0 55%;
+    margin-left: 30px;
+    padding: 2.5rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 42px;
+  }
+  
+  .hero-content p {
+    font-size: 16px;
+  }
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .hero {
@@ -337,11 +430,13 @@
   }
   
   .hero-image {
+    flex: none;
     max-width: 300px;
     margin-bottom: 30px;
   }
   
   .hero-content {
+    flex: none;
     padding: 2rem;
     margin-left: 0;
     max-width: 100%;
@@ -392,6 +487,22 @@
   .invite-section {
     padding: 30px 20px;
   }
+  
+  .social-links {
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+  }
+  
+  .social-link {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .social-icon {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -423,6 +534,18 @@
   
   .invite-section {
     padding: 20px 15px;
+  }
+  
+  .social-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .social-link {
+    width: 100%;
+    max-width: 200px;
+    justify-content: center;
   }
 }
 
