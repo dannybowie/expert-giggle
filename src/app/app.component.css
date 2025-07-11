@@ -154,6 +154,36 @@ footer {
   transition: all 0.3s ease;
 }
 
+/* SCROLL BANNER */
+.scroll-banner {
+  width: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 10px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.scroll-banner span {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: scroll-banner 12s linear infinite;
+}
+
+@keyframes scroll-banner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 /* RESPONSIVE STYLES */
 @media (max-width: 1024px) {
   nav, .main-nav {
