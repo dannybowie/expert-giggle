@@ -2,7 +2,8 @@
   <div *ngIf="toastMessage" class="toast">{{ toastMessage }}</div>
   <header>
     <nav class="main-nav">
-      <div class="nav-left">
+      <!-- Desktop navigation (existing code) -->
+      <div class="nav-left desktop-nav">
         <a routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">HOME</a>
         <a routerLink="/about" routerLinkActive="active-link">ABOUT</a>
         <a routerLink="/book" routerLinkActive="active-link">BOOK</a>
@@ -24,7 +25,7 @@
           </span>
         </ng-template> -->
       </div>
-      <div class="nav-right">
+      <div class="nav-right desktop-nav">
         <ng-container *ngIf="!isLoggedIn; else userMenu">
           <a (click)="openAuthModal('login')">Login/Register</a>
         </ng-container>
@@ -39,6 +40,12 @@
             </div>
           </div>
         </ng-template>
+      </div>
+      <!-- Hamburger for mobile -->
+      <div class="hamburger-menu mobile-nav" (click)="showMobileMenu = !showMobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </nav>
   </header>
@@ -64,6 +71,16 @@
   </div>
 
   <router-outlet></router-outlet>
+
+  <!-- Mobile menu dropdown -->
+  <div class="mobile-menu-dropdown" *ngIf="showMobileMenu">
+    <a routerLink="/home">HOME</a>
+    <a routerLink="/about">ABOUT</a>
+    <a routerLink="/book">BOOK</a>
+    <a routerLink="/speaking">EVENTS</a>
+    <a *ngIf="isLoggedIn" (click)="logout()">LOG OUT</a>
+    <a *ngIf="!isLoggedIn" (click)="openAuthModal('login')">LOGIN/REGISTER</a>
+  </div>
 
   <footer>
     <p>© 2025 BeBe Bowie. All rights reserved.</p>
