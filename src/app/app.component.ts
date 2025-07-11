@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
   displayName = '';
   firstName = '';
   showMenu = false;
+  showMobileMenu = false;
   toastMessage = '';
   toastTimeout: any;
 

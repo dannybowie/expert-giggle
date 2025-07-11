@@ -402,6 +402,16 @@ a.btn-red:hover {
   }
 }
 
+@media (max-width: 900px) {
+  .section .book-cover {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    max-width: 90vw;
+  }
+}
+
 @media (max-width: 768px) {
   .hero { 
     flex-direction: column; 
