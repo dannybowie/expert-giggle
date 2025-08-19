@@ -1,17 +1,88 @@
-<body>
+<div class="page-container">
+  <div *ngIf="toastMessage" class="toast">{{ toastMessage }}</div>
+  <header>
+    <nav class="main-nav">
+      <!-- Desktop navigation (existing code) -->
+      <div class="nav-left desktop-nav">
+        <a routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">HOME</a>
+        <a routerLink="/about" routerLinkActive="active-link">ABOUT</a>
+        <a routerLink="/book" routerLinkActive="active-link">BOOK</a>
+        <a routerLink="/speaking" routerLinkActive="active-link">EVENTS</a>
+        <!-- <a
+          *ngIf="currentUser?.isMember; else locked"
+          routerLink="/blog"
+          routerLinkActive="active-link"
+          >Blog</a>
+        <ng-template #locked>
+          <span
+            class="nav-lock"
+            style="cursor: not-allowed; opacity: 0.6; position: relative;"
+            title="Available to members only"
+            tabindex="0"
+            aria-disabled="true"
+          >
+            Blog <span class="lock-icon">🔒</span>
+          </span>
+        </ng-template> -->
+      </div>
+      <div class="nav-right desktop-nav">
+        <ng-container *ngIf="!isLoggedIn; else userMenu">
+          <a (click)="openAuthModal('login')">Login/Register</a>
+        </ng-container>
+        <ng-template #userMenu>
+          <div class="user-menu" (mouseleave)="showMenu = false">
+            <span class="user-name" (click)="showMenu = !showMenu">
+              Hello, {{ currentUser?.firstName || 'Account' }}
+            </span>
+            <div class="dropdown" *ngIf="showMenu">
+              <a routerLink="/profile">Profile</a>
+              <a (click)="logout()">Log out</a>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <!-- Hamburger for mobile -->
+      <div class="hamburger-menu mobile-nav" (click)="showMobileMenu = !showMobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+  <div class="scroll-banner">
+    <span>Do Your D.U.T.Y. Available now</span>
+  </div>
 
-  <nav>
-    <a routerLink="/">HOME</a>
-    <a routerLink="/about">ABOUT</a>
-    <a routerLink="/book">BOOK</a>
-    <a routerLink="/speaking">SPEAKING</a>
-    <a routerLink="/blog">Blog</a>
-  </nav>
+  <!-- Single modal, switch content -->
+  <div *ngIf="showAuthModal">
+    <div class="modal-backdrop" (click)="closeAuthModal()"></div>
+    <div class="modal">
+      <app-login
+        *ngIf="isLoginMode"
+        (close)="closeAuthModal()"
+        (switchToRegister)="switchAuthMode()"
+      ></app-login>
+      <app-register
+        *ngIf="!isLoginMode"
+        (close)="closeAuthModal()"
+        (switchToLogin)="switchAuthMode()"
+      ></app-register>
+    </div>
+  </div>
 
   <router-outlet></router-outlet>
-    
+
+  <!-- Mobile menu dropdown -->
+  <div class="mobile-menu-dropdown" *ngIf="showMobileMenu">
+    <a routerLink="/home">HOME</a>
+    <a routerLink="/about">ABOUT</a>
+    <a routerLink="/book">BOOK</a>
+    <a routerLink="/speaking">EVENTS</a>
+    <a *ngIf="isLoggedIn" (click)="logout()">LOG OUT</a>
+    <a *ngIf="!isLoggedIn" (click)="openAuthModal('login')">LOGIN/REGISTER</a>
+  </div>
+
   <footer>
     <p>© 2025 BeBe Bowie. All rights reserved.</p>
   </footer>
-
-</body>
+</div>

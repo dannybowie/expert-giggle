@@ -1,0 +1,28 @@
+<div class="modal-backdrop" (click)="onClose()"></div>
+<div class="modal">
+  <h2>Login</h2>
+  <form (ngSubmit)="loginWithEmail()" #loginForm="ngForm">
+    <label>
+      Email:
+      <input type="email" [(ngModel)]="email" name="email" required />
+    </label>
+    <label>
+      Password:
+      <input type="password" [(ngModel)]="password" name="password" required />
+    </label>
+    <div class="forgot-password">
+      <a href="#" (click)="forgotPassword(); $event.preventDefault()">Forgot Password?</a>
+    </div>
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
+  <div class="divider">or</div>
+  <button (click)="loginWithGoogle()" class="google-btn">Sign in with Google</button>
+  <button class="close-btn" (click)="onClose()">Close</button>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="resetEmailSent" class="success">Password reset email sent! Please check your inbox.</div>
+  <p>
+    Don't have an account?
+    <a href="#" (click)="switchToRegister.emit(); $event.preventDefault()">Register</a>
+  </p>
+</div>
+

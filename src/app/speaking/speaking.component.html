@@ -1,1 +1,58 @@
-<p>speaking works!</p>
+<div class="speaking-container">
+  <div class="speaking-content-grid">
+    <!-- Image Area (Top Left) -->
+    <div class="speaker-image-container">
+      <img src="assets/IMG_1093.jpg" alt="BeBe Bowie Speaking" class="speaker-image"/>
+    </div>
+    
+    <!-- Text Area (Bottom Left) -->
+    <div class="speaking-info">
+      <h1>Book BeBe for your next event</h1>
+      <p>
+        BeBe Bowie is available for speaking engagements, workshops, and more. Inspire your audience with her story of resilience and transformation.
+      </p>
+      <ul>
+        <li>Doing your DUTY: Embracing responsibility and purpose</li>
+        <li>Recognizing and facing trauma</li>
+        <li>Building resilience and self-worth</li>
+        <li>Tools for personal and collective healing</li>
+      </ul>
+      <p>
+        Invite BeBe to your conference, school, organization, or community event for a transformative experience.
+      </p>
+    </div>
+    
+    <!-- Form Area (Full Right Column) -->
+    <section class="booking-form-section" [class.form-disabled]="!isLoggedIn">
+      <h2>Request a Speaking Engagement</h2>
+      <form (ngSubmit)="onSubmit()">
+        <label>
+          Your Name:
+          <input type="text" [(ngModel)]="name" name="name" [disabled]="!isLoggedIn" required />
+        </label>
+        <label>
+          Your Email:
+          <input type="email" [(ngModel)]="email" name="email" [disabled]="!isLoggedIn" required />
+        </label>
+        <label>
+          Organization / Event:
+          <input type="text" [(ngModel)]="organization" name="organization" [disabled]="!isLoggedIn" />
+        </label>
+        <label>
+          Message / Details:
+          <textarea [(ngModel)]="message" name="message" [disabled]="!isLoggedIn" rows="5" required></textarea>
+        </label>
+        <button type="submit" [disabled]="!isLoggedIn">Send Request</button>
+      </form>
+      <div *ngIf="!isLoggedIn" class="form-lock-msg">
+        Please log in or register to request a speaking engagement.
+      </div>
+      <div *ngIf="submitted" class="success-message">
+        Thank you! Your request has been sent. We'll be in touch soon.
+      </div>
+      <div *ngIf="error" class="error-message">
+        {{ error }}
+      </div>
+    </section>
+  </div>
+</div>

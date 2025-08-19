@@ -1,0 +1,410 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+.modal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 2em 2.5em;
+  border-radius: 10px;
+  z-index: 1001;
+  min-width: 340px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  max-width: 95vw;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 1.5em;
+  font-size: 2rem;
+  text-align: center;
+  color: #d7263d;
+  letter-spacing: 1px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.5em;
+}
+
+input[type="email"],
+input[type="password"] {
+  padding: 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+  margin-top: 0.5em;
+}
+
+button[type="submit"], .google-btn, .close-btn {
+  width: 100%;
+  padding: 0.75em;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  margin-top: 0.5em;
+}
+
+button[type="submit"] {
+  background: #d7263d;
+  color: #fff;
+}
+
+button[type="submit"]:hover {
+  background: #a81c2a;
+  cursor: pointer;
+}
+
+.google-btn {
+  background: #4285F4;
+  color: #fff;
+  margin-top: 0.5em;
+}
+
+.google-btn:hover {
+  background: #3367d6;
+  color: #fff;
+  cursor: pointer;
+}
+
+.close-btn {
+  background: #eee;
+  color: #222;
+  margin-top: 1em;
+}
+
+.close-btn:hover {
+  background: #ccc;
+  color: #111;
+  cursor: pointer;
+}
+
+.divider {
+  margin: 1.5em 0 1em 0;
+  text-align: center;
+  color: #888;
+  font-size: 0.95em;
+}
+
+.error {
+  color: #d7263d;
+  margin-top: 1em;
+  text-align: center;
+  max-width: 320px;
+  word-break: break-word;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p {
+  text-align: center;
+  margin-top: 1em;
+}
+
+a {
+  color: #d7263d;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.forgot-password {
+  text-align: right;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.forgot-password a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: var(--transition-default);
+}
+
+.forgot-password a:hover {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: var(--border-radius-sm);
+  padding: 10px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Tablet styles (768px - 1023px) */
+@media (max-width: 1023px) {
+  .modal {
+    padding: 1.8em 2.2em;
+    min-width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.3em;
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    padding: 0.7em;
+    font-size: 0.95em;
+  }
+  
+  button[type="submit"], .google-btn, .close-btn {
+    padding: 0.7em;
+    font-size: 0.95em;
+  }
+  
+  .error {
+    max-width: 280px;
+    font-size: 0.9em;
+  }
+}
+
+/* Mobile styles (768px and below) */
+@media (max-width: 768px) {
+  .modal-backdrop {
+    padding: 10px;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1.5em 1.8em;
+    min-width: 280px;
+    max-width: 85vw;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2em;
+    letter-spacing: 0.5px;
+  }
+  
+  form {
+    gap: 0.9em;
+  }
+  
+  label {
+    margin-bottom: 0.4em;
+    font-size: 0.95em;
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    padding: 0.65em;
+    font-size: 0.9em;
+    margin-top: 0.4em;
+  }
+  
+  button[type="submit"], .google-btn, .close-btn {
+    padding: 0.65em;
+    font-size: 0.9em;
+    margin-top: 0.4em;
+  }
+  
+  .divider {
+    margin: 1.2em 0 0.8em 0;
+    font-size: 0.9em;
+  }
+  
+  .error {
+    max-width: 250px;
+    font-size: 0.85em;
+    margin-top: 0.8em;
+  }
+  
+  p {
+    margin-top: 0.8em;
+    font-size: 0.9em;
+  }
+}
+
+/* Small mobile styles (480px and below) */
+@media (max-width: 480px) {
+  .modal-backdrop {
+    padding: 5px;
+  }
+  
+  .modal {
+    padding: 1.2em 1.5em;
+    min-width: 260px;
+    max-width: 90vw;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1em;
+    letter-spacing: 0.3px;
+  }
+  
+  form {
+    gap: 0.8em;
+  }
+  
+  label {
+    margin-bottom: 0.3em;
+    font-size: 0.9em;
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    padding: 0.6em;
+    font-size: 0.85em;
+    margin-top: 0.3em;
+  }
+  
+  button[type="submit"], .google-btn, .close-btn {
+    padding: 0.6em;
+    font-size: 0.85em;
+    margin-top: 0.3em;
+  }
+  
+  .divider {
+    margin: 1em 0 0.6em 0;
+    font-size: 0.85em;
+  }
+  
+  .error {
+    max-width: 220px;
+    font-size: 0.8em;
+    margin-top: 0.6em;
+  }
+  
+  p {
+    margin-top: 0.6em;
+    font-size: 0.85em;
+  }
+  
+  .close-btn {
+    margin-top: 0.8em;
+  }
+}
+
+/* Extra small mobile (320px and below) */
+@media (max-width: 320px) {
+  .modal {
+    padding: 1em 1.2em;
+    min-width: 240px;
+    max-width: 95vw;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8em;
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    padding: 0.5em;
+    font-size: 0.8em;
+  }
+  
+  button[type="submit"], .google-btn, .close-btn {
+    padding: 0.5em;
+    font-size: 0.8em;
+  }
+  
+  .error {
+    max-width: 200px;
+    font-size: 0.75em;
+  }
+  
+  p {
+    font-size: 0.8em;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .modal {
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 1.2em 1.5em;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1em;
+  }
+  
+  form {
+    gap: 0.7em;
+  }
+  
+  .divider {
+    margin: 1em 0 0.5em 0;
+  }
+  
+  .close-btn {
+    margin-top: 0.5em;
+  }
+}
+
+/* Touch device enhancements */
+@media (hover: none) and (pointer: coarse) {
+  button[type="submit"], .google-btn, .close-btn {
+    min-height: 44px; /* Minimum touch target size */
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    min-height: 44px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .modal {
+    border: 2px solid #000;
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    border: 2px solid #000;
+  }
+  
+  button[type="submit"] {
+    border: 2px solid #000;
+  }
+  
+  .google-btn {
+    border: 2px solid #000;
+  }
+  
+  .close-btn {
+    border: 2px solid #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .modal {
+    transform: translate(-50%, -50%);
+    transition: none;
+  }
+}
