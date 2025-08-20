@@ -138,5 +138,9 @@ export class AppComponent implements OnInit {
     this.showMenu = false;
     this.showToast('You are now logged out');
   }
+
+  navigateToJoinMe() {
+    this.router.navigate(['/joinMe']);
+  }
 }
 
