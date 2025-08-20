@@ -7,6 +7,7 @@ export const routes: Routes = [
   { path: 'home', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent) },
   { path: 'book', loadComponent: () => import('./book/book.component').then(m => m.BookComponent) },
   { path: 'speaking', loadComponent: () => import('./speaking/speaking.component').then(m => m.SpeakingComponent) },
+  { path: 'joinMe', loadComponent: () => import('./join-me/join-me.component').then(m => m.JoinMeComponent) },
   //{ path: 'gallery', loadComponent: () => import('./gallery/gallery.component').then(m => m.GalleryComponent) },
   //{ path: 'newsletter', loadComponent: () => import('./newsletter/newsletter.component').then(m => m.NewsletterComponent) },
   { 
