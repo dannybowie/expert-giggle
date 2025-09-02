@@ -305,57 +305,40 @@ body {
   .book-section {
     padding: 20px 15px;
   }
-  
+
   .book-grid {
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-      "header"
-      "cover"
-      "blurb";
+    display: flex;           /* Change to flex */
+    flex-direction: column;  /* Stack items vertically */
     gap: 30px;
     padding: 1.5rem;
-    box-shadow: var(--shadow-sm);
   }
-  
+
   .book-header {
-    text-align: center;
+    order: 1;               /* Control stacking order */
   }
-  
-  .book-header h1 {
-    font-size: 2.2rem;
-  }
-  
-  .subtitle {
-    font-size: 1rem;
-  }
-  
-  .divider {
-    margin: 0 auto;
-  }
-  
+
   .book-cover-cell {
-    justify-self: center;
-    padding: 1.5em 2em;
-    border-radius: var(--border-radius-md);
-    box-shadow: 0 8px 24px rgba(182, 45, 39, 0.2);
-  }
-  
-  .book-cover {
-    max-width: 250px;
-  }
-  
-  .buy-btn {
+    order: 2;               /* Control stacking order */
     width: 100%;
-    max-width: 250px;
-    padding: 12px 20px;
-    box-shadow: 0 4px 12px rgba(182, 45, 39, 0.2);
+    position: relative;     /* Change from static */
+    min-height: 400px;      /* Give it room for content */
   }
-  
+
   .book-blurb {
-    font-size: 1rem;
-    text-align: left;
+    order: 3;               /* Control stacking order */
+    width: 100%;
+    position: relative;     /* Change from static */
   }
-  
+
+  /* Remove any absolute positioning */
+  .book-cover-cell,
+  .book-blurb {
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+  }
+
   /* For older mobile layouts */
   .book-hero {
     flex-direction: column;
@@ -380,6 +363,15 @@ body {
   
   .book-text, .book-blurb {
     max-width: 100%;
+  }
+  
+  .book-cover-cell,
+  .book-blurb {
+    position: static !important;
+    z-index: auto !important;
+  }
+  .book-cover_cell::before {
+    display: none !important;
   }
 }
 
@@ -422,10 +414,6 @@ body {
   .book-blurb {
     font-size: 0.95rem;
     line-height: 1.6;
-  }
-  
-  .book-blurb p {
-    margin-bottom: 15px;
   }
   
   .book-section {

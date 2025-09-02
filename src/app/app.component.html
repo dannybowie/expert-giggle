@@ -75,13 +75,13 @@
 
   <!-- Mobile menu dropdown -->
   <div class="mobile-menu-dropdown" *ngIf="showMobileMenu">
-    <a routerLink="/home">HOME</a>
-    <a routerLink="/about">ABOUT</a>
-    <a routerLink="/book">BOOK</a>
-    <a routerLink="/speaking">EVENTS</a>
-    <a routerLink="/joinMe">LIVE SESSION</a>
-    <a *ngIf="isLoggedIn" (click)="logout()">LOG OUT</a>
-    <a *ngIf="!isLoggedIn" (click)="openAuthModal('login')">LOGIN/REGISTER</a>
+    <a routerLink="/home" (click)="closeMobileMenu()">HOME</a>
+    <a routerLink="/about" (click)="closeMobileMenu()">ABOUT</a>
+    <a routerLink="/book" (click)="closeMobileMenu()">BOOK</a>
+    <a routerLink="/speaking" (click)="closeMobileMenu()">EVENTS</a>
+    <a routerLink="/joinMe" (click)="closeMobileMenu()">LIVE SESSION</a>
+    <a *ngIf="isLoggedIn" (click)="logout(); closeMobileMenu()">LOG OUT</a>
+    <a *ngIf="!isLoggedIn" (click)="openAuthModal('login'); closeMobileMenu()">LOGIN/REGISTER</a>
   </div>
 
   <footer>
