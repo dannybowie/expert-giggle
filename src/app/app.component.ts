@@ -75,6 +75,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+  closeMobileMenu() {
+    this.showMobileMenu = false;
+  }
+
   ngOnInit() {
     this.authService.currentUser().subscribe(user => {
       this.currentUser = user;
