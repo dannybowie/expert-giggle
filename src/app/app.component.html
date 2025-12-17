@@ -8,7 +8,7 @@
         <a routerLink="/about" routerLinkActive="active-link">ABOUT</a>
         <a routerLink="/book" routerLinkActive="active-link">BOOK</a>
         <a routerLink="/speaking" routerLinkActive="active-link">EVENTS</a>
-        <a routerLink="/joinMe" routerLinkActive="active-link">LIVE SESSION</a>
+        <!-- <a routerLink="/joinMe" routerLinkActive="active-link">LIVE SESSION</a> -->
         <!-- <a
           *ngIf="currentUser?.isMember; else locked"
           routerLink="/blog"
@@ -50,9 +50,9 @@
       </div>
     </nav>
   </header>
-  <div class="scroll-banner" (click)="navigateToJoinMe()" style="cursor:pointer;">
+  <!-- <div class="scroll-banner" (click)="navigateToJoinMe()" style="cursor:pointer;">
     <span>Live Sessions Available for September</span>
-  </div>
+  </div> -->
 
   <!-- Single modal, switch content -->
   <div *ngIf="showAuthModal">
