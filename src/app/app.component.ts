@@ -1,6 +1,6 @@
 import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
-import { NgIf, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { Router, NavigationEnd } from '@angular/router';
@@ -16,10 +16,9 @@ import { AuthService, AppUser } from './auth.service';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
-    NgIf,
     LoginComponent,
     RegisterComponent
-  ],
+],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

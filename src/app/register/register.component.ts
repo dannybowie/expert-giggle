@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { NgIf } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Auth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, updateProfile, UserCredential } from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
@@ -7,7 +7,7 @@ import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [NgIf, FormsModule],
+  imports: [FormsModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })

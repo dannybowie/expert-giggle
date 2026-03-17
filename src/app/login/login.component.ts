@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { NgIf } from '@angular/common';
+
 import { FormsModule, NgForm } from '@angular/forms';
 import { Auth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from '@angular/fire/auth';
 import { Firestore, collection, query, where, getDocs } from '@angular/fire/firestore';
@@ -7,7 +7,7 @@ import { Firestore, collection, query, where, getDocs } from '@angular/fire/fire
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NgIf, FormsModule],
+  imports: [FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

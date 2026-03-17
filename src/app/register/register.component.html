@@ -23,13 +23,19 @@
       <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required minlength="6" />
     </label>
     <button type="submit" class="register-btn" [disabled]="loading">
-      <span *ngIf="!loading">Register</span>
-      <span *ngIf="loading">Registering...</span>
+      @if (!loading) {
+        <span>Register</span>
+      }
+      @if (loading) {
+        <span>Registering...</span>
+      }
     </button>
   </form>
-  <div class="success" *ngIf="success">
-    Registration successful! Welcome aboard.
-  </div>
+  @if (success) {
+    <div class="success">
+      Registration successful! Welcome aboard.
+    </div>
+  }
   <div class="divider">or</div>
   <button (click)="registerWithGoogle()" class="google-btn">Sign up with Google</button>
   <button class="close-btn" (click)="onClose()">Close</button>
@@ -37,5 +43,7 @@
     Already have an account?
     <a href="#" (click)="switchToLogin.emit(); $event.preventDefault()">Log In</a>
   </p>
-  <div *ngIf="error" class="error">{{ error }}</div>
+  @if (error) {
+    <div class="error">{{ error }}</div>
+  }
 </div>

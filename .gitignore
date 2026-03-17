@@ -49,7 +49,7 @@ Thumbs.db
 /out-tsc/
 /.angular/
 
-# Add this line to .gitignore
+# Environment files
 .env
 .env.*
 
