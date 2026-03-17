@@ -1,3 +1,4 @@
+import { provideZoneChangeDetection } from "@angular/core";
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -20,7 +21,7 @@ initializeAppCheck(firebaseApp, {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRouter(routes),
+    provideZoneChangeDetection(),provideRouter(routes),
     provideFirebaseApp(() => firebaseApp),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

@@ -1,5 +1,7 @@
 <div class="page-container">
-  <div *ngIf="toastMessage" class="toast">{{ toastMessage }}</div>
+  @if (toastMessage) {
+    <div class="toast">{{ toastMessage }}</div>
+  }
   <header>
     <nav class="main-nav">
       <!-- Desktop navigation (existing code) -->
@@ -10,81 +12,92 @@
         <a routerLink="/speaking" routerLinkActive="active-link">EVENTS</a>
         <!-- <a routerLink="/joinMe" routerLinkActive="active-link">LIVE SESSION</a> -->
         <!-- <a
-          *ngIf="currentUser?.isMember; else locked"
-          routerLink="/blog"
-          routerLinkActive="active-link"
-          >Blog</a>
-        <ng-template #locked>
-          <span
-            class="nav-lock"
-            style="cursor: not-allowed; opacity: 0.6; position: relative;"
-            title="Available to members only"
-            tabindex="0"
-            aria-disabled="true"
+        *ngIf="currentUser?.isMember; else locked"
+        routerLink="/blog"
+        routerLinkActive="active-link"
+      >Blog</a>
+      <ng-template #locked>
+        <span
+          class="nav-lock"
+          style="cursor: not-allowed; opacity: 0.6; position: relative;"
+          title="Available to members only"
+          tabindex="0"
+          aria-disabled="true"
           >
-            Blog <span class="lock-icon">🔒</span>
+          Blog <span class="lock-icon">🔒</span>
+        </span>
+      </ng-template> -->
+    </div>
+    <div class="nav-right desktop-nav">
+      @if (!isLoggedIn) {
+        <a (click)="openAuthModal('login')">Login/Register</a>
+      } @else {
+        <div class="user-menu" (mouseleave)="showMenu = false">
+          <span class="user-name" (click)="showMenu = !showMenu">
+            Hello, {{ currentUser?.firstName || 'Account' }}
           </span>
-        </ng-template> -->
-      </div>
-      <div class="nav-right desktop-nav">
-        <ng-container *ngIf="!isLoggedIn; else userMenu">
-          <a (click)="openAuthModal('login')">Login/Register</a>
-        </ng-container>
-        <ng-template #userMenu>
-          <div class="user-menu" (mouseleave)="showMenu = false">
-            <span class="user-name" (click)="showMenu = !showMenu">
-              Hello, {{ currentUser?.firstName || 'Account' }}
-            </span>
-            <div class="dropdown" *ngIf="showMenu">
+          @if (showMenu) {
+            <div class="dropdown">
               <a routerLink="/profile">Profile</a>
               <a (click)="logout()">Log out</a>
             </div>
-          </div>
-        </ng-template>
-      </div>
-      <!-- Hamburger for mobile -->
-      <div class="hamburger-menu mobile-nav" (click)="showMobileMenu = !showMobileMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </nav>
-  </header>
-  <!-- <div class="scroll-banner" (click)="navigateToJoinMe()" style="cursor:pointer;">
-    <span>Live Sessions Available for September</span>
-  </div> -->
+          }
+        </div>
+      }
+    </div>
+    <!-- Hamburger for mobile -->
+    <div class="hamburger-menu mobile-nav" (click)="showMobileMenu = !showMobileMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+</header>
+<!-- <div class="scroll-banner" (click)="navigateToJoinMe()" style="cursor:pointer;">
+<span>Live Sessions Available for September</span>
+</div> -->
 
-  <!-- Single modal, switch content -->
-  <div *ngIf="showAuthModal">
+<!-- Single modal, switch content -->
+@if (showAuthModal) {
+  <div>
     <div class="modal-backdrop" (click)="closeAuthModal()"></div>
     <div class="modal">
-      <app-login
-        *ngIf="isLoginMode"
-        (close)="closeAuthModal()"
-        (switchToRegister)="switchAuthMode()"
-      ></app-login>
-      <app-register
-        *ngIf="!isLoginMode"
-        (close)="closeAuthModal()"
-        (switchToLogin)="switchAuthMode()"
-      ></app-register>
+      @if (isLoginMode) {
+        <app-login
+          (close)="closeAuthModal()"
+          (switchToRegister)="switchAuthMode()"
+        ></app-login>
+      }
+      @if (!isLoginMode) {
+        <app-register
+          (close)="closeAuthModal()"
+          (switchToLogin)="switchAuthMode()"
+        ></app-register>
+      }
     </div>
   </div>
+}
 
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>
 
-  <!-- Mobile menu dropdown -->
-  <div class="mobile-menu-dropdown" *ngIf="showMobileMenu">
+<!-- Mobile menu dropdown -->
+@if (showMobileMenu) {
+  <div class="mobile-menu-dropdown">
     <a routerLink="/home" (click)="closeMobileMenu()">HOME</a>
     <a routerLink="/about" (click)="closeMobileMenu()">ABOUT</a>
     <a routerLink="/book" (click)="closeMobileMenu()">BOOK</a>
     <a routerLink="/speaking" (click)="closeMobileMenu()">EVENTS</a>
     <a routerLink="/joinMe" (click)="closeMobileMenu()">LIVE SESSION</a>
-    <a *ngIf="isLoggedIn" (click)="logout(); closeMobileMenu()">LOG OUT</a>
-    <a *ngIf="!isLoggedIn" (click)="openAuthModal('login'); closeMobileMenu()">LOGIN/REGISTER</a>
+    @if (isLoggedIn) {
+      <a (click)="logout(); closeMobileMenu()">LOG OUT</a>
+    }
+    @if (!isLoggedIn) {
+      <a (click)="openAuthModal('login'); closeMobileMenu()">LOGIN/REGISTER</a>
+    }
   </div>
+}
 
-  <footer>
-    <p>© 2025 BeBe Bowie. All rights reserved.</p>
-  </footer>
+<footer>
+  <p>© 2025 BeBe Bowie. All rights reserved.</p>
+</footer>
 </div>

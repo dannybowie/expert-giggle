@@ -18,8 +18,12 @@
   <div class="divider">or</div>
   <button (click)="loginWithGoogle()" class="google-btn">Sign in with Google</button>
   <button class="close-btn" (click)="onClose()">Close</button>
-  <div *ngIf="error" class="error">{{ error }}</div>
-  <div *ngIf="resetEmailSent" class="success">Password reset email sent! Please check your inbox.</div>
+  @if (error) {
+    <div class="error">{{ error }}</div>
+  }
+  @if (resetEmailSent) {
+    <div class="success">Password reset email sent! Please check your inbox.</div>
+  }
   <p>
     Don't have an account?
     <a href="#" (click)="switchToRegister.emit(); $event.preventDefault()">Register</a>
