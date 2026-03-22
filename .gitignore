@@ -70,3 +70,6 @@ yarn-error.log*
 
 # Misc
 package-lock.json
+
+# Environment files
+src/environments/environment.development.ts

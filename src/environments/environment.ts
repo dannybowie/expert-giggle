@@ -6,12 +6,12 @@ import { initializeApp } from "firebase/app";
 // src/environments/environment.ts
 export const environment = {
   firebase: {
-  apiKey: "AIzaSyDpzLlEPWKJJMamLcvsrCHrloahOX61-y0",
-  authDomain: "authoring-project.firebaseapp.com",
-  projectId: "authoring-project",
-  storageBucket: "authoring-project.firebasestorage.app",
-  messagingSenderId: "827234552480",
-  appId: "1:827234552480:web:616fa768e4cd465f2757c5",
+  apiKey: "${FIREBASE_API_KEY}", // Replaced during GitHub Actions build
+  authDomain: "${FIREBASE_AUTH_DOMAIN}",
+  projectId: "${FIREBASE_PROJECT_ID}",
+  storageBucket: "${FIREBASE_STORAGE_BUCKET}",
+  messagingSenderId: "${FIREBASE_MESSAGING_SENDER_ID}",
+  appId: "${FIREBASE_APP_ID}",
   measurementId: "G-EC8QX27Q03"
 }
 };
